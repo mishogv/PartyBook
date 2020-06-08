@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Client\PartyBook.Client.csproj" />
-    <ProjectReference Include="..\Shared\PartyBook.Shared.csproj" />
+    <ProjectReference Include="..\Shared\PartyBook.ViewModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>
