@@ -10,9 +10,7 @@ using Microsoft.Extensions.Logging;
 namespace PartyBook.Server.Controllers
 {
     [Authorize]
-    [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastController : ApiController
     {
         private static readonly string[] Summaries = new[]
         {
