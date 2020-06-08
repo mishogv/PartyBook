@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using PartyBook.Server.Models;
+using PartyBook.Data.Models;
 
 namespace PartyBook.Server.Areas.Identity.Pages.Account
 {

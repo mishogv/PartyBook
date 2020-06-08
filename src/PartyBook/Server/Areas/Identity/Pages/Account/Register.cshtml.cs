@@ -1,6 +1,5 @@
 ﻿namespace PartyBook.Server.Areas.Identity.Pages.Account
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
@@ -15,7 +14,7 @@
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Logging;
-    using PartyBook.Server.Models;
+    using PartyBook.Data.Models;
 
     [AllowAnonymous]
     public class RegisterModel : PageModel

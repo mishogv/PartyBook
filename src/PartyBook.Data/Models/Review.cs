@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace PartyBook.Server.Models
+﻿namespace PartyBook.Data.Models
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class Review : BaseModel<int>
     {
-        [Range(1,10)]
+        [Range(1, 10)]
         public int Raiting { get; set; }
 
         [Required]

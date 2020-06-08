@@ -1,4 +1,4 @@
-﻿namespace PartyBook.Server.Models
+﻿namespace PartyBook.Data.Models
 {
     public class BaseModel<T>
     {

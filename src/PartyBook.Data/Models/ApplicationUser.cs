@@ -1,4 +1,4 @@
-﻿namespace PartyBook.Server.Models
+﻿namespace PartyBook.Data.Models
 {
     using Microsoft.AspNetCore.Identity;
     using System.Collections.Generic;
@@ -11,9 +11,9 @@
 
         public ApplicationUser()
         {
-            this.Reviews = new HashSet<Review>();
-            this.Requests = new HashSet<BookRequest>();
-            this.NightClubs = new HashSet<NightClub>();
+            Reviews = new HashSet<Review>();
+            Requests = new HashSet<BookRequest>();
+            NightClubs = new HashSet<NightClub>();
         }
 
         [Required]

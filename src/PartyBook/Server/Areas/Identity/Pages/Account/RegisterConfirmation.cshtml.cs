@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
-using PartyBook.Server.Models;
-using Microsoft.AspNetCore.Identity;
-
-namespace PartyBook.Server.Areas.Identity.Pages.Account
+﻿namespace PartyBook.Server.Areas.Identity.Pages.Account
 {
+    using Microsoft.AspNetCore.Authorization;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Identity.UI.Services;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.AspNetCore.WebUtilities;
+    using Microsoft.AspNetCore.Identity;
+    using PartyBook.Data.Models;
+
     [AllowAnonymous]
     public class RegisterConfirmationModel : PageModel
     {

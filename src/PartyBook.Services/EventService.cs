@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PartyBook.Services
+﻿namespace PartyBook.Services
 {
-    class EventService
+    public class EventService : IEventService
     {
     }
 }

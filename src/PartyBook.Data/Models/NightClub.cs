@@ -1,4 +1,4 @@
-﻿namespace PartyBook.Server.Models
+﻿namespace PartyBook.Data.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -10,9 +10,9 @@
 
         public NightClub()
         {
-            this.Reviewes = new HashSet<Review>();
-            this.Events = new HashSet<Event>();
-            this.Requests = new HashSet<BookRequest>();
+            Reviewes = new HashSet<Review>();
+            Events = new HashSet<Event>();
+            Requests = new HashSet<BookRequest>();
         }
 
         [Required]

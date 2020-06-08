@@ -8,7 +8,7 @@ namespace PartyBook.Server
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using PartyBook.Server.Data;
-    using PartyBook.Server.Models;
+    using PartyBook.Data.Models;
 
     public class Startup
     {
