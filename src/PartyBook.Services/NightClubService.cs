@@ -26,5 +26,34 @@
 
             return new NightClubCreateViewModel() { Id = result.Entity.Id, Name = name, CoverUrl = coverUrl, Description = description, BusinessHours = businessHours, Location = location, TelephoneForReservations = telephoneForReservations };
         }
+
+        public async Task<NightClubCreateViewModel> UpdateAsync(string id, string name, string coverUrl, string description, string businessHours, string location, string telephoneForReservations)
+        {
+            var nightClub = new NightClub
+            {
+                Id = id,
+                Name = name,
+                CoverUrl = coverUrl,
+                Description = description,
+                BusinessHours = businessHours,
+                Location = location,
+                TelephoneForReservations = telephoneForReservations
+            };
+
+            //TODO : Test if it works without Update only with tacking
+            this.dbContext.Update(nightClub);
+            await this.dbContext.SaveChangesAsync();
+
+            return new NightClubCreateViewModel() { Id = nightClub.Id, Name = name, CoverUrl = coverUrl, Description = description, BusinessHours = businessHours, Location = location, TelephoneForReservations = telephoneForReservations };
+        }
+
+        public async Task<bool> DeleteAsync(string id)
+        {
+            var nightClub = await this.dbContext.NightClubs.FindAsync(id);
+
+            this.dbContext.NightClubs.Remove(nightClub);
+
+            return (await this.dbContext.SaveChangesAsync()) > 0;
+        }
     }
 }
