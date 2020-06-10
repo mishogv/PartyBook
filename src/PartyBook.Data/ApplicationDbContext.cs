@@ -1,4 +1,4 @@
-﻿namespace PartyBook.Server.Data
+﻿namespace PartyBook.Data
 {
     using IdentityServer4.EntityFramework.Options;
     using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
@@ -10,7 +10,7 @@
     {
         public ApplicationDbContext(
             DbContextOptions options,
-            IOptions<OperationalStoreOptions> operationalStoreOptions) 
+            IOptions<OperationalStoreOptions> operationalStoreOptions)
             : base(options, operationalStoreOptions)
         {
         }

@@ -7,8 +7,15 @@ namespace PartyBook.Server
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using PartyBook.Server.Data;
     using PartyBook.Data.Models;
+    using PartyBook.Data;
+    using Microsoft.OpenApi.Models;
+    using PartyBook.Services;
+    using Swashbuckle.Swagger;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.IO;
+    using System;
 
     public class Startup
     {
@@ -27,7 +34,7 @@ namespace PartyBook.Server
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser>(options => 
+            services.AddDefaultIdentity<ApplicationUser>(options =>
                 {
                     options.Password.RequiredLength = 6;
                     options.Password.RequireDigit = false;
@@ -45,6 +52,46 @@ namespace PartyBook.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc(
+                    "v1",
+                    new OpenApiInfo
+                    {
+                        Title = "My PartyBook API",
+                        Version = "v1"
+                    });
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Please enter into field the word 'Bearer' following by space and JWT",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+
+                    }
+                });
+            });
+
+            services.AddTransient<IBookService, BookService>();
+            services.AddTransient<INightClubService, NightClubService>();
+            services.AddTransient<IReviewService, ReviewService>();
+            services.AddTransient<IEventService, EventService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,6 +119,15 @@ namespace PartyBook.Server
             app.UseIdentityServer();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseEndpoints(endpoints =>
             {
