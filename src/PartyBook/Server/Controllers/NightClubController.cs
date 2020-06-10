@@ -5,6 +5,7 @@
     using PartyBook.Server.Infrastructure.Extensions;
     using PartyBook.Services;
     using PartyBook.ViewModels.NightClub;
+    using System.ComponentModel.DataAnnotations;
     using System.Threading.Tasks;
 
     [Authorize]
@@ -25,6 +26,24 @@
             var nightClub = await this.nightClubService.CreateAsync(inputModel.Name, inputModel.CoverUrl, inputModel.Description, inputModel.BusinessHours, inputModel.Location, inputModel.TelephoneForReservations, userId);
 
             return this.Created(nameof(Create), nightClub);
+        }
+
+        [HttpPut]
+        [Route(nameof(Update))]
+        public async Task<ActionResult> Update([FromBody]NightClubUpdateInputModel inputModel)
+        {
+            var nightClub = await this.nightClubService.UpdateAsync(inputModel.Id,inputModel.Name, inputModel.CoverUrl, inputModel.Description, inputModel.BusinessHours, inputModel.Location, inputModel.TelephoneForReservations);
+
+            return this.Ok(nightClub);
+        }
+
+        [HttpDelete]
+        [Route(nameof(Delete))]
+        public async Task<ActionResult> Delete([FromBody]NightClubDeleteInputModel inputModel)
+        {
+            var nightClub = await this.nightClubService.DeleteAsync(inputModel.Id);
+
+            return this.Accepted(nightClub);
         }
     }
 }

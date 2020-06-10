@@ -5,6 +5,10 @@
 
     public interface INightClubService
     {
+        Task<NightClubCreateViewModel> GetByIdAsync(string id);
+
+        Task<NightClubCreateViewModel> GetByNameAsync(string name);
+
         Task<NightClubCreateViewModel> CreateAsync(string name, string coverUrl, string description, string businessHours,
                                 string location, string telephoneForReservations, string userId);
 
