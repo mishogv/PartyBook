@@ -3,8 +3,10 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class EventCreateInputModel
+    public class EventUpdateInputModel
     {
+        public int Id { get; set; }
+
         public DateTime When { get; set; }
 
         [Required]
@@ -17,7 +19,5 @@
 
         [Required]
         public string PictureUrl { get; set; }
-
-        public string NightClubId { get; set; }
     }
 }
