@@ -17,6 +17,15 @@
         {
             this.nightClubService = nightClubService;
         }
+        //TODO: Add get multipple nightClubs
+
+        [HttpGet("{name}")]
+        public async Task<ActionResult<NightClubCreateViewModel>> Get([FromRoute]string name)
+            =>  await this.nightClubService.GetByNameAsync(name);
+
+        [HttpGet("GetById/{id}")]
+        public async Task<ActionResult<NightClubCreateViewModel>> GetById([FromRoute]string id)
+            => await this.nightClubService.GetByIdAsync(id);
 
         [HttpPost]
         [Route(nameof(Create))]
