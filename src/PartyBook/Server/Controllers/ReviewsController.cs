@@ -1,6 +1,6 @@
 ﻿namespace PartyBook.Server.Controllers
 {
-    public class ReviewController : ApiController
+    public class ReviewsController : ApiController
     {
     }
 }

@@ -9,22 +9,23 @@
     using System.Threading.Tasks;
 
     [Authorize]
-    public class NightClubController : ApiController
+    public class NightClubsController : ApiController
     {
         private readonly INightClubService nightClubService;
 
-        public NightClubController(INightClubService nightClubService)
+        public NightClubsController(INightClubService nightClubService)
         {
             this.nightClubService = nightClubService;
         }
+
         //TODO: Add get multipple nightClubs
 
         [HttpGet("{name}")]
-        public async Task<ActionResult<NightClubCreateViewModel>> Get([FromRoute]string name)
+        public async Task<ActionResult<NightClubCreateViewModel>> Get([FromRoute][Required]string name)
             =>  await this.nightClubService.GetByNameAsync(name);
 
         [HttpGet("GetById/{id}")]
-        public async Task<ActionResult<NightClubCreateViewModel>> GetById([FromRoute]string id)
+        public async Task<ActionResult<NightClubCreateViewModel>> GetById([FromRoute][Required]string id)
             => await this.nightClubService.GetByIdAsync(id);
 
         [HttpPost]
