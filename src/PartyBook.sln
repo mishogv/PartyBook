@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Client", "PartyBo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.ViewModels", "PartyBook\Shared\PartyBook.ViewModels.csproj", "{A3BE9ABD-868D-4E78-BBDD-9EC35F15CC18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyBook.Services", "PartyBook.Services\PartyBook.Services.csproj", "{0174AF8A-A022-493E-BD1C-72C510BAE6C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Services", "PartyBook.Services\PartyBook.Services.csproj", "{0174AF8A-A022-493E-BD1C-72C510BAE6C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyBook.Data", "PartyBook.Data\PartyBook.Data.csproj", "{3448C71D-6A3B-41F8-81E6-06BAD97A652A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Data", "PartyBook.Data\PartyBook.Data.csproj", "{3448C71D-6A3B-41F8-81E6-06BAD97A652A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyBook.Services.Mapping", "PartyBook.Services.Mapping\PartyBook.Services.Mapping.csproj", "{E42F9262-5942-4891-A741-7584B4A877AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{3448C71D-6A3B-41F8-81E6-06BAD97A652A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3448C71D-6A3B-41F8-81E6-06BAD97A652A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3448C71D-6A3B-41F8-81E6-06BAD97A652A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E42F9262-5942-4891-A741-7584B4A877AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E42F9262-5942-4891-A741-7584B4A877AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E42F9262-5942-4891-A741-7584B4A877AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E42F9262-5942-4891-A741-7584B4A877AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

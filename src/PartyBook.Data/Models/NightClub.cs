@@ -1,9 +1,11 @@
 ﻿namespace PartyBook.Data.Models
 {
+    using PartyBook.Services.Mapping;
+    using PartyBook.ViewModels.NightClub;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class NightClub : BaseModel<string>
+    public class NightClub : BaseModel<string>, IMapTo<NightClubCreateViewModel>, IMapFrom<NightClubCreateViewModel>
     {
         private const int MinLength = 3;
         private const int MaxLength = 30;

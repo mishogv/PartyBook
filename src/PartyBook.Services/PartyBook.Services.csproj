@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PartyBook.Data\PartyBook.Data.csproj" />
+    <ProjectReference Include="..\PartyBook.Services.Mapping\PartyBook.Services.Mapping.csproj" />
     <ProjectReference Include="..\PartyBook\Shared\PartyBook.ViewModels.csproj" />
   </ItemGroup>
 

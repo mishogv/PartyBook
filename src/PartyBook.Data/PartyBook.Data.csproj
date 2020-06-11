@@ -18,4 +18,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PartyBook.Services.Mapping\PartyBook.Services.Mapping.csproj" />
+    <ProjectReference Include="..\PartyBook\Shared\PartyBook.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>

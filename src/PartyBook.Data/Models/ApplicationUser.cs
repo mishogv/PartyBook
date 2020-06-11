@@ -11,9 +11,9 @@
 
         public ApplicationUser()
         {
-            Reviews = new HashSet<Review>();
-            Requests = new HashSet<BookRequest>();
-            NightClubs = new HashSet<NightClub>();
+            this.Reviews = new HashSet<Review>();
+            this.Requests = new HashSet<BookRequest>();
+            this.NightClubs = new HashSet<NightClub>();
         }
 
         [Required]

@@ -1,11 +1,10 @@
 ﻿namespace PartyBook.Services
 {
-    using System;
-    using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using PartyBook.Data;
     using PartyBook.Data.Models;
+    using PartyBook.Services.Mapping;
     using PartyBook.ViewModels.NightClub;
 
     public class NightClubService : INightClubService
@@ -18,29 +17,21 @@
         }
 
         public async Task<NightClubCreateViewModel> GetByIdAsync(string id)
-        {
-            var nightClub = await this.dbContext.NightClubs.FindAsync(id);
-
-            return new NightClubCreateViewModel() { Id = nightClub.Id, Name = nightClub.Name, CoverUrl = nightClub.CoverUrl, Description = nightClub.Description, BusinessHours = nightClub.BusinessHours, Location = nightClub.Location, TelephoneForReservations = nightClub.TelephoneForReservations };
-        }
+            => (await this.dbContext.NightClubs.FindAsync(id))?.MapTo<NightClubCreateViewModel>();
 
         public async Task<NightClubCreateViewModel> GetByNameAsync(string name)
-        {
-            var nightClub = await this.dbContext.NightClubs.FirstOrDefaultAsync(x => x.Name.ToLower() == name.ToLower());
-
-            return new NightClubCreateViewModel() { Id = nightClub.Id, Name = nightClub.Name, CoverUrl = nightClub.CoverUrl, Description = nightClub.Description, BusinessHours = nightClub.BusinessHours, Location = nightClub.Location, TelephoneForReservations = nightClub.TelephoneForReservations };
-        }
+            => (await this.dbContext.NightClubs.FirstOrDefaultAsync(x => x.Name.ToLower() == name.ToLower()))?.MapTo<NightClubCreateViewModel>();
 
         public async Task<NightClubCreateViewModel> CreateAsync(string name, string coverUrl, string description, string businessHours, string location, string telephoneForReservations, string userId)
         {
             var user = await this.dbContext.Users.FindAsync(userId);
             var nightClub = new NightClub() { Name = name, CoverUrl = coverUrl, Description = description, BusinessHours = businessHours, Location = location, TelephoneForReservations = telephoneForReservations, User = user };
 
-            var result = await this.dbContext.NightClubs.AddAsync(nightClub);
+            await this.dbContext.NightClubs.AddAsync(nightClub);
 
             await this.dbContext.SaveChangesAsync();
 
-            return new NightClubCreateViewModel() { Id = result.Entity.Id, Name = name, CoverUrl = coverUrl, Description = description, BusinessHours = businessHours, Location = location, TelephoneForReservations = telephoneForReservations };
+            return nightClub.MapTo<NightClubCreateViewModel>();
         }
 
         public async Task<NightClubCreateViewModel> UpdateAsync(string id, string name, string coverUrl, string description, string businessHours, string location, string telephoneForReservations)
@@ -57,7 +48,7 @@
             this.dbContext.Update(nightClub);
             await this.dbContext.SaveChangesAsync();
 
-            return new NightClubCreateViewModel() { Id = nightClub.Id, Name = name, CoverUrl = coverUrl, Description = description, BusinessHours = businessHours, Location = location, TelephoneForReservations = telephoneForReservations };
+            return nightClub.MapTo<NightClubCreateViewModel>();
         }
 
         public async Task<bool> DeleteAsync(string id)

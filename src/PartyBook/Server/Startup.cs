@@ -16,6 +16,8 @@ namespace PartyBook.Server
     using System.Reflection;
     using System.IO;
     using System;
+    using PartyBook.Services.Mapping;
+    using PartyBook.ViewModels.NightClub;
 
     public class Startup
     {
@@ -97,6 +99,9 @@ namespace PartyBook.Server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            AutoMapperConfig.RegisterMappings(typeof(NightClubCreateInputModel).GetTypeInfo().Assembly,
+                typeof(ApplicationUser).GetTypeInfo().Assembly);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

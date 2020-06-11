@@ -1,5 +1,6 @@
 ﻿namespace PartyBook.ViewModels.NightClub
 {
+
     public class NightClubCreateViewModel
     {
         public string Id { get; set; }
