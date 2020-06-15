@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Services", "Party
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Data", "PartyBook.Data\PartyBook.Data.csproj", "{3448C71D-6A3B-41F8-81E6-06BAD97A652A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyBook.Services.Mapping", "PartyBook.Services.Mapping\PartyBook.Services.Mapping.csproj", "{E42F9262-5942-4891-A741-7584B4A877AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Services.Mapping", "PartyBook.Services.Mapping\PartyBook.Services.Mapping.csproj", "{E42F9262-5942-4891-A741-7584B4A877AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyBook.Common", "PartyBook.Common\PartyBook.Common.csproj", "{D7F2BECE-C1B7-43D6-A716-08482BC57C0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{E42F9262-5942-4891-A741-7584B4A877AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E42F9262-5942-4891-A741-7584B4A877AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E42F9262-5942-4891-A741-7584B4A877AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F2BECE-C1B7-43D6-A716-08482BC57C0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F2BECE-C1B7-43D6-A716-08482BC57C0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F2BECE-C1B7-43D6-A716-08482BC57C0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F2BECE-C1B7-43D6-A716-08482BC57C0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
