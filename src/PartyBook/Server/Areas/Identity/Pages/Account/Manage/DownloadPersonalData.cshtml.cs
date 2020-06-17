@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using PartyBook.Data.Models;
+using PartyBook.Data.Identity.Models;
 
 namespace PartyBook.Server.Areas.Identity.Pages.Account.Manage
 {

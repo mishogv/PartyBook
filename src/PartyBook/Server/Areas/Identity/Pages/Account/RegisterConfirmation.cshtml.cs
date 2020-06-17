@@ -8,7 +8,7 @@
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.AspNetCore.Identity;
-    using PartyBook.Data.Models;
+    using PartyBook.Data.Identity.Models;
 
     [AllowAnonymous]
     public class RegisterConfirmationModel : PageModel

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using PartyBook.Data.Models;
+using PartyBook.Data.Identity.Models;
 
 namespace PartyBook.Server.Areas.Identity.Pages.Account.Manage
 {

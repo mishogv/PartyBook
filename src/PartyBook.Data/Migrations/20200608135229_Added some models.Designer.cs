@@ -9,7 +9,7 @@ using PartyBook.Data;
 
 namespace PartyBook.Server.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(TempDbContext))]
     [Migration("20200608135229_Added some models")]
     partial class Addedsomemodels
     {

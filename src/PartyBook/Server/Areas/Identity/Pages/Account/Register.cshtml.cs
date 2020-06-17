@@ -14,7 +14,7 @@
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Logging;
-    using PartyBook.Data.Models;
+    using PartyBook.Data.Identity.Models;
 
     [AllowAnonymous]
     public class RegisterModel : PageModel

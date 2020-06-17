@@ -1,0 +1,130 @@
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace PartyBook.MicroServices.NightClub.Migrations
+{
+    public partial class InitialNightClub : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "NightClubs",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 30, nullable: false),
+                    CoverUrl = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(maxLength: 300, nullable: false),
+                    BusinessHours = table.Column<string>(maxLength: 300, nullable: false),
+                    Location = table.Column<string>(maxLength: 300, nullable: false),
+                    TelephoneForReservations = table.Column<string>(maxLength: 10, nullable: false),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NightClubs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BookRequests",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    When = table.Column<DateTime>(nullable: false),
+                    TelephoneNumber = table.Column<string>(maxLength: 10, nullable: false),
+                    Message = table.Column<string>(nullable: true),
+                    NumberOfPeople = table.Column<int>(nullable: false),
+                    IsApproved = table.Column<bool>(nullable: false),
+                    IsRejected = table.Column<bool>(nullable: false),
+                    NightClubId = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BookRequests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BookRequests_NightClubs_NightClubId",
+                        column: x => x.NightClubId,
+                        principalTable: "NightClubs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Events",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    When = table.Column<DateTime>(nullable: false),
+                    Title = table.Column<string>(maxLength: 40, nullable: false),
+                    Description = table.Column<string>(maxLength: 200, nullable: false),
+                    PictureUrl = table.Column<string>(nullable: false),
+                    NightClubId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Events", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Events_NightClubs_NightClubId",
+                        column: x => x.NightClubId,
+                        principalTable: "NightClubs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reviews",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Raiting = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(maxLength: 300, nullable: false),
+                    UserId = table.Column<string>(nullable: true),
+                    NightClubId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reviews", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reviews_NightClubs_NightClubId",
+                        column: x => x.NightClubId,
+                        principalTable: "NightClubs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BookRequests_NightClubId",
+                table: "BookRequests",
+                column: "NightClubId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Events_NightClubId",
+                table: "Events",
+                column: "NightClubId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reviews_NightClubId",
+                table: "Reviews",
+                column: "NightClubId");
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "BookRequests");
+
+            migrationBuilder.DropTable(
+                name: "Events");
+
+            migrationBuilder.DropTable(
+                name: "Reviews");
+
+            migrationBuilder.DropTable(
+                name: "NightClubs");
+        }
+    }
+}

@@ -1,6 +1,6 @@
-﻿namespace PartyBook.Services
-{
-    public interface IBookService
-    {
-    }
-}
+﻿//namespace PartyBook.Services
+//{
+//    public interface IBookService
+//    {
+//    }
+//}

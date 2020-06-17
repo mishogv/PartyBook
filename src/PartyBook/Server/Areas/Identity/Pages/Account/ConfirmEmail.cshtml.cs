@@ -7,7 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
-    using PartyBook.Data.Models;
+    using PartyBook.Data.Identity.Models;
 
     [AllowAnonymous]
     public class ConfirmEmailModel : PageModel

@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PartyBook.Data\PartyBook.Data.csproj" />
+    <ProjectReference Include="..\..\PartyBook.Common\PartyBook.Common.csproj" />
     <ProjectReference Include="..\..\PartyBook.Services.Mapping\PartyBook.Services.Mapping.csproj" />
     <ProjectReference Include="..\..\PartyBook.Services\PartyBook.Services.csproj" />
     <ProjectReference Include="..\Client\PartyBook.Client.csproj" />
@@ -25,8 +25,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="3.1.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3" />
   </ItemGroup>
 
 </Project>
