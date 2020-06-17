@@ -11,9 +11,9 @@
     {
         public static IApplicationBuilder UseWebService(
             this IApplicationBuilder app,
-            IWebHostEnvironment env)
+            IWebHostEnvironment env, params Assembly[] assemblies)
         {
-            AutoMapperConfig.RegisterMappings(typeof(NightClubCreateInputModel).GetTypeInfo().Assembly);
+            AutoMapperConfig.RegisterMappings(assemblies);
 
             if (env.IsDevelopment())
             {
@@ -28,6 +28,12 @@
             }
 
             app
+                .UseCors(opt => 
+                {
+                    opt.AllowAnyOrigin();
+                    opt.AllowAnyMethod();
+                    opt.AllowAnyHeader();
+                })
                 .UseHttpsRedirection()
                 .UseRouting()
                 .UseAuthentication()

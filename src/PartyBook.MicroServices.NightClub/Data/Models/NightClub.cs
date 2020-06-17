@@ -5,6 +5,7 @@
     using PartyBook.ViewModels.NightClub;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class NightClub : BaseModel<string>, IMapTo<NightClubCreateViewModel>, IMapFrom<NightClubCreateViewModel>
     {
@@ -13,9 +14,9 @@
 
         public NightClub()
         {
-            Reviewes = new HashSet<Review>();
-            Events = new HashSet<Event>();
-            Requests = new HashSet<BookRequest>();
+            this.Reviewes = new HashSet<string>();
+            this.Events = new HashSet<Event>();
+            this.Requests = new HashSet<BookRequest>();
         }
 
         [Required]
@@ -43,7 +44,8 @@
 
         public string UserId { get; set; }
 
-        public virtual ICollection<Review> Reviewes { get; set; }
+        [NotMapped]
+        public ICollection<string> Reviewes { get; set; }
 
         public virtual ICollection<Event> Events { get; set; }
 

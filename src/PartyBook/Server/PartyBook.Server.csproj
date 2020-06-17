@@ -15,7 +15,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\PartyBook.Common\PartyBook.Common.csproj" />
     <ProjectReference Include="..\..\PartyBook.Services.Mapping\PartyBook.Services.Mapping.csproj" />
-    <ProjectReference Include="..\..\PartyBook.Services\PartyBook.Services.csproj" />
     <ProjectReference Include="..\Client\PartyBook.Client.csproj" />
     <ProjectReference Include="..\Shared\PartyBook.ViewModels.csproj" />
   </ItemGroup>

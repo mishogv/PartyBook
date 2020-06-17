@@ -1,7 +1,6 @@
-﻿namespace PartyBook.MicroServices.NightClub.Data.Models
+﻿namespace PartyBook.MicroServices.Review.Data.Models
 {
     using PartyBook.Data.Common;
-    using PartyBook.Services.Mapping;
     using System.ComponentModel.DataAnnotations;
 
     public class Review : BaseModel<int>
@@ -16,6 +15,5 @@
         public string UserId { get; set; }
 
         public string NightClubId { get; set; }
-        public virtual NightClub NightClub { get; set; }
     }
 }

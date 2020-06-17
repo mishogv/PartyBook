@@ -1,4 +1,4 @@
-﻿namespace PartyBook.MicroServices.NightClub.Services
+﻿namespace PartyBook.MicroServices.Review.Services
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

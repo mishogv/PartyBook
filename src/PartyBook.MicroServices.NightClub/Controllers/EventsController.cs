@@ -1,11 +1,10 @@
-﻿namespace PartyBook.Server.Controllers
+﻿namespace PartyBook.MicroServices.NightClub.Controllers
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using PartyBook.Common.Controllers;
     using PartyBook.Common.Infrastructure;
     using PartyBook.MicroServices.NightClub.Services;
-    using PartyBook.Services;
     using PartyBook.ViewModels.Event;
     using System.Collections.Generic;
     using System.Threading.Tasks;

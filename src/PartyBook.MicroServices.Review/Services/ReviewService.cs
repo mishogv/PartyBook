@@ -1,17 +1,17 @@
-﻿namespace PartyBook.MicroServices.NightClub.Services
+﻿namespace PartyBook.MicroServices.Review.Services
 {
     using Microsoft.EntityFrameworkCore;
-    using PartyBook.MicroServices.NightClub.Data;
-    using PartyBook.MicroServices.NightClub.Data.Models;
+    using PartyBook.MicroServices.Review.Data;
+    using PartyBook.MicroServices.Review.Data.Models;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     public class ReviewService : IReviewService
     {
-        private readonly NightClubDbContext dbContext;
+        private readonly ReviewDbContext dbContext;
 
-        public ReviewService(NightClubDbContext dbContext)
+        public ReviewService(ReviewDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
