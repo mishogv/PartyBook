@@ -15,8 +15,6 @@
 
         public DbSet<NightClub> NightClubs { get; set; }
 
-        public DbSet<BookRequest> BookRequests { get; set; }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

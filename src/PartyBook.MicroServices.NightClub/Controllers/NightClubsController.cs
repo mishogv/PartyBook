@@ -9,6 +9,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Threading.Tasks;
 
+    //TODO ADD ALLOW ANONYMOUS
     [Authorize]
     public class NightClubsController : ApiController
     {

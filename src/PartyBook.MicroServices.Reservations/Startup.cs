@@ -1,4 +1,4 @@
-namespace PartyBook.MicroServices.NightClub
+namespace PartyBook.MicroServices.Reservations
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -6,10 +6,10 @@ namespace PartyBook.MicroServices.NightClub
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using PartyBook.Common.Infrastructure;
-    using PartyBook.MicroServices.NightClub.Data;
-    using PartyBook.MicroServices.NightClub.Services;
-    using PartyBook.MicroServices.NightClub.Data.Models;
-    using PartyBook.ViewModels.NightClub;
+    using PartyBook.MicroServices.Reservations.Data;
+    using PartyBook.MicroServices.Reservations.Data.Models;
+    using PartyBook.MicroServices.Reservations.Services;
+    using PartyBook.ViewModels.Reservation;
 
     public class Startup
     {
@@ -22,17 +22,16 @@ namespace PartyBook.MicroServices.NightClub
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<NightClubDbContext>(options =>
+            services.AddDbContext<ReservationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddWebService();
 
-            services.AddTransient<INightClubService, NightClubService>();
-            services.AddTransient<IEventService, EventService>();
+            services.AddTransient<IReservationService, ReservationService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-            => app.UseWebService(env, typeof(NightClub).Assembly, typeof(NightClubCreateInputModel).Assembly);
+            => app.UseWebService(env, typeof(Reservation).Assembly, typeof(ReservationtCreateInputModel).Assembly);
     }
 }

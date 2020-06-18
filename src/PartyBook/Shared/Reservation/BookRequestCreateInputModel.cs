@@ -1,9 +1,9 @@
-﻿namespace PartyBook.ViewModels.Book
+﻿namespace PartyBook.ViewModels.Reservation
 {
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class BookRequestCreateInputModel
+    public class ReservationtCreateInputModel
     {
         [Required]
         public DateTime When { get; set; }

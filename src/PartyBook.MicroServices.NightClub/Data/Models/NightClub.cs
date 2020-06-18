@@ -16,7 +16,7 @@
         {
             this.Reviewes = new HashSet<string>();
             this.Events = new HashSet<Event>();
-            this.Requests = new HashSet<BookRequest>();
+            this.Requests = new HashSet<string>();
         }
 
         [Required]
@@ -49,6 +49,7 @@
 
         public virtual ICollection<Event> Events { get; set; }
 
-        public virtual ICollection<BookRequest> Requests { get; set; }
+        [NotMapped]
+        public virtual ICollection<string> Requests { get; set; }
     }
 }

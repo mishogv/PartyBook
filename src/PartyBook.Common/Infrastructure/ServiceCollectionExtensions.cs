@@ -1,6 +1,5 @@
 ﻿namespace PartyBook.Common.Infrastructure
 {
-    using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;

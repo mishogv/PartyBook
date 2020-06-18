@@ -1,10 +1,10 @@
-﻿namespace PartyBook.MicroServices.NightClub.Data.Models
+﻿namespace PartyBook.MicroServices.Reservations.Data.Models
 {
     using PartyBook.Data.Common;
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class BookRequest : BaseModel<int>
+    public class Reservation : BaseModel<int>
     {
         [Required]
         public DateTime When { get; set; }
@@ -23,7 +23,6 @@
         public bool IsRejected { get; set; } = false;
 
         public string NightClubId { get; set; }
-        public virtual NightClub NightClub { get; set; }
 
         public string UserId { get; set; }
     }
