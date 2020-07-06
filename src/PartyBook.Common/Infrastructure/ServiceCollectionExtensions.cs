@@ -1,9 +1,11 @@
 ﻿namespace PartyBook.Common.Infrastructure
 {
+    using MassTransit;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
+    using System;
 
     public static class ServiceCollectionExtensions
     {
@@ -71,6 +73,30 @@
                     }
                 });
             });
+
+            return services;
+        }
+
+        public static IServiceCollection AddMessaging(
+                this IServiceCollection services,
+                params Type[] consumers)
+        {
+            services
+                .AddMassTransit(mt =>
+                {
+                    consumers.ForEach(consumer => mt.AddConsumer(consumer));
+
+                    mt.AddBus(bus => Bus.Factory.CreateUsingRabbitMq(rmq =>
+                    {
+                        rmq.Host("localhost");
+
+                        consumers.ForEach(consumer => rmq.ReceiveEndpoint(consumer.FullName, endpoint =>
+                        {
+                            endpoint.ConfigureConsumer(bus, consumer);
+                        }));
+                    }));
+                })
+                .AddMassTransitHostedService();
 
             return services;
         }

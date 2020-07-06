@@ -7,7 +7,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class NightClub : BaseModel<string>, IMapTo<NightClubCreateViewModel>, IMapFrom<NightClubCreateViewModel>
+    public class NightClub : BaseModel<string>, IMapTo<NightClubCreateViewModel>, IMapFrom<NightClubCreateViewModel>, IMapTo<NightClubGetAllViewModel>
     {
         private const int MinLength = 3;
         private const int MaxLength = 30;
@@ -16,7 +16,6 @@
         {
             this.Reviewes = new HashSet<string>();
             this.Events = new HashSet<Event>();
-            this.Requests = new HashSet<string>();
         }
 
         [Required]
@@ -48,8 +47,5 @@
         public ICollection<string> Reviewes { get; set; }
 
         public virtual ICollection<Event> Events { get; set; }
-
-        [NotMapped]
-        public virtual ICollection<string> Requests { get; set; }
     }
 }

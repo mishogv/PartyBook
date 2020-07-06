@@ -1,10 +1,13 @@
 ﻿namespace PartyBook.MicroServices.NightClub.Services
 {
     using PartyBook.ViewModels.NightClub;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public interface INightClubService
     {
+        Task<IEnumerable<NightClubGetAllViewModel>> GetAllAsync();
+
         Task<NightClubCreateViewModel> GetByIdAsync(string id);
 
         Task<NightClubCreateViewModel> GetByNameAsync(string name);

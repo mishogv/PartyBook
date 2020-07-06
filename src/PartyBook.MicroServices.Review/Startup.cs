@@ -27,7 +27,7 @@ namespace PartyBook.MicroServices.Review
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddWebService();
-
+            services.AddMessaging();
             services.AddTransient<IReviewService, ReviewService>();
         }
 

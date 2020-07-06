@@ -6,6 +6,7 @@
     using PartyBook.Common.Infrastructure;
     using PartyBook.MicroServices.NightClub.Services;
     using PartyBook.ViewModels.NightClub;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Threading.Tasks;
 
@@ -20,8 +21,12 @@
             this.nightClubService = nightClubService;
         }
 
-        //TODO: Add get multipple nightClubs
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IEnumerable<NightClubGetAllViewModel>> GetAll()
+        => await this.nightClubService.GetAllAsync();
 
+        [AllowAnonymous]
         [HttpGet("{name}")]
         public async Task<ActionResult<NightClubCreateViewModel>> Get([FromRoute][Required]string name)
             =>  await this.nightClubService.GetByNameAsync(name);

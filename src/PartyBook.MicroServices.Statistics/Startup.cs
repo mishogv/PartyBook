@@ -5,9 +5,10 @@ namespace PartyBook.MicroServices.Statistics
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
     using PartyBook.Common.Infrastructure;
     using PartyBook.MicroServices.Statistics.Data;
+    using PartyBook.MicroServices.Statistics.Messages;
+    using PartyBook.MicroServices.Statistics.Services;
 
     public class Startup
     {
@@ -24,6 +25,9 @@ namespace PartyBook.MicroServices.Statistics
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddTransient<IStatisticsService, StatisticsService>();
+
+            services.AddMessaging(typeof(ReviewCreatedConsumer));
             services.AddWebService();
         }
 

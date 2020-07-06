@@ -24,6 +24,8 @@
 
         public string NightClubId { get; set; }
 
+        public string NightClubOwnerId { get; set; }
+
         public string UserId { get; set; }
     }
 }

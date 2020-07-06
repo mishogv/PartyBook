@@ -1,6 +1,8 @@
 ﻿namespace PartyBook.MicroServices.Review.Services
 {
+    using MassTransit;
     using Microsoft.EntityFrameworkCore;
+    using PartyBook.Common.Messages;
     using PartyBook.MicroServices.Review.Data;
     using PartyBook.MicroServices.Review.Data.Models;
     using System.Collections.Generic;
@@ -10,10 +12,12 @@
     public class ReviewService : IReviewService
     {
         private readonly ReviewDbContext dbContext;
+        private readonly IBus publisher;
 
-        public ReviewService(ReviewDbContext dbContext)
+        public ReviewService(ReviewDbContext dbContext, IBus publisher)
         {
             this.dbContext = dbContext;
+            this.publisher = publisher;
         }
 
         public async Task<IEnumerable<int>> GetAsync(string nightClubId)
@@ -37,6 +41,8 @@
             await dbContext.Reviews.AddAsync(review);
 
             await dbContext.SaveChangesAsync();
+
+            await this.publisher.Publish(new ReviewCreatedMessage() { ReviewId = review.Id });
 
             return review.Id;
         }

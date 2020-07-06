@@ -6,6 +6,7 @@
     using PartyBook.Services.Mapping;
     using PartyBook.ViewModels.NightClub;
     using PartyBook.MicroServices.NightClub.Data.Models;
+    using System.Collections.Generic;
 
     public class NightClubService : INightClubService
     {
@@ -15,6 +16,10 @@
         {
             this.dbContext = dbContext;
         }
+
+
+        public async Task<IEnumerable<NightClubGetAllViewModel>> GetAllAsync()
+            => await this.dbContext.NightClubs.To<NightClubGetAllViewModel>().ToListAsync();
 
         public async Task<NightClubCreateViewModel> GetByIdAsync(string id)
             => (await dbContext.NightClubs.FindAsync(id))?.MapTo<NightClubCreateViewModel>();

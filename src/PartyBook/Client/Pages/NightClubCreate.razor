@@ -1,0 +1,20 @@
+﻿@page "/NightClubs/Create"
+
+<h3>NightClubCreate</h3>
+<EditForm Model="@nightClub" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="name" @bind-Value="nightClub.Name" class="input-group" />
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private NightClubCreateInputModel nightClub = new NightClubCreateInputModel();
+
+    private void HandleValidSubmit()
+    {
+        Console.WriteLine("OnValidSubmit");
+    }
+}

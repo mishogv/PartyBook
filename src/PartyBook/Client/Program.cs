@@ -6,6 +6,7 @@ namespace PartyBook.Client
     using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
     using Microsoft.Extensions.DependencyInjection;
+    using PartyBook.Client.Services;
 
     public class Program
     {
@@ -19,13 +20,16 @@ namespace PartyBook.Client
                 {
                     var handler = sp.GetService<AuthorizationMessageHandler>()
                     .ConfigureHandler(
-                        authorizedUrls: new[] { "https://localhost:5002", "https://localhost:5003", "https://localhost:5004" });
+                        authorizedUrls: new[] { "https://localhost:5002", "https://localhost:5003", "https://localhost:5004", "https://localhost:5005" });
                     return handler;
                 });
 
             builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("PartyBook.ServerAPI"));
 
             builder.Services.AddApiAuthorization();
+
+            builder.Services.AddTransient<IApiClient, ApiClient>();
+            builder.Services.AddTransient<IAuthorizationApiClient, AuthorizationApiClient>();
 
             await builder.Build().RunAsync();
         }
