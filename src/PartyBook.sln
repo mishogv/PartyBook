@@ -21,13 +21,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MicroServices", "MicroServi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.MicroServices.NightClub", "PartyBook.MicroServices.NightClub\PartyBook.MicroServices.NightClub.csproj", "{45BC9E71-FCD6-4204-874B-E25A33A65283}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyBook.MicroServices.Review", "PartyBook.MicroServices.Review\PartyBook.MicroServices.Review.csproj", "{BB51B732-34DE-4621-826C-4683748F4776}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.MicroServices.Review", "PartyBook.MicroServices.Review\PartyBook.MicroServices.Review.csproj", "{BB51B732-34DE-4621-826C-4683748F4776}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyBook.MicroServices.Reservations", "PartyBook.MicroServices.Reservations\PartyBook.MicroServices.Reservations.csproj", "{5C5482A4-B41B-48CD-AAD8-82D262560A62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.MicroServices.Reservations", "PartyBook.MicroServices.Reservations\PartyBook.MicroServices.Reservations.csproj", "{5C5482A4-B41B-48CD-AAD8-82D262560A62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyBook.MicroServices.Statistics", "PartyBook.MicroServices.Statistics\PartyBook.MicroServices.Statistics.csproj", "{872BEB37-DABE-42D0-9D54-F7BF9625175A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.MicroServices.Statistics", "PartyBook.MicroServices.Statistics\PartyBook.MicroServices.Statistics.csproj", "{872BEB37-DABE-42D0-9D54-F7BF9625175A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyBook.MicroServices.Administration", "PartyBook.MicroServices.Administration\PartyBook.MicroServices.Administration.csproj", "{9019F957-C172-453C-A431-194A14582F5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.MicroServices.Administration", "PartyBook.MicroServices.Administration\PartyBook.MicroServices.Administration.csproj", "{9019F957-C172-453C-A431-194A14582F5C}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7C5F1435-9502-487C-9CB2-375A2E619CE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{9019F957-C172-453C-A431-194A14582F5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9019F957-C172-453C-A431-194A14582F5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9019F957-C172-453C-A431-194A14582F5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C5F1435-9502-487C-9CB2-375A2E619CE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C5F1435-9502-487C-9CB2-375A2E619CE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C5F1435-9502-487C-9CB2-375A2E619CE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C5F1435-9502-487C-9CB2-375A2E619CE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

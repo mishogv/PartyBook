@@ -32,6 +32,7 @@ namespace PartyBook.MicroServices.Review
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-            => app.UseWebService(env, typeof(Review).Assembly, typeof(ReviewCreateInputModel).Assembly);
+            => app.UseWebService(env, typeof(Review).Assembly, typeof(ReviewCreateInputModel).Assembly)
+                .Initialize<ReviewDbContext>();
     }
 }

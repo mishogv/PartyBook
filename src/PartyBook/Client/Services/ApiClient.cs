@@ -16,6 +16,6 @@
         }
 
         public async Task<IEnumerable<NightClubGetAllViewModel>> GetNightClubs()
-            => await client.GetFromJsonAsync<IEnumerable<NightClubGetAllViewModel>>("https://localhost:5002/NightClubs");
+            => await client.GetFromJsonAsync<IEnumerable<NightClubGetAllViewModel>>("http://localhost:5002/NightClubs");
     }
 }

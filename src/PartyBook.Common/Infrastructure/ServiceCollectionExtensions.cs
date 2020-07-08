@@ -25,7 +25,8 @@
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                    options.Authority = "https://localhost:5000";
+                    options.RequireHttpsMetadata = false;
+                    options.Authority = "http://src_partybook.server_1";
                     options.Audience = "PartyBook.ServerAPI";
                     options.TokenValidationParameters = new TokenValidationParameters()
                     {   
@@ -88,7 +89,11 @@
 
                     mt.AddBus(bus => Bus.Factory.CreateUsingRabbitMq(rmq =>
                     {
-                        rmq.Host("localhost");
+                        rmq.Host("rabbitmq", host =>
+                        {
+                            host.Username("rabbitmq");
+                            host.Password("rabbitmq");
+                        });
 
                         consumers.ForEach(consumer => rmq.ReceiveEndpoint(consumer.FullName, endpoint =>
                         {

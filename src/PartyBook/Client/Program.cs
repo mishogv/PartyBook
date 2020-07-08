@@ -20,7 +20,7 @@ namespace PartyBook.Client
                 {
                     var handler = sp.GetService<AuthorizationMessageHandler>()
                     .ConfigureHandler(
-                        authorizedUrls: new[] { "https://localhost:5002", "https://localhost:5003", "https://localhost:5004", "https://localhost:5005" });
+                        authorizedUrls: new[] { "http://localhost:5002", "http://localhost:5003", "http://localhost:5004", "http://localhost:5005" });
                     return handler;
                 });
 

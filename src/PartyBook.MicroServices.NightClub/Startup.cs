@@ -10,6 +10,7 @@ namespace PartyBook.MicroServices.NightClub
     using PartyBook.MicroServices.NightClub.Services;
     using PartyBook.MicroServices.NightClub.Data.Models;
     using PartyBook.ViewModels.NightClub;
+    using Microsoft.IdentityModel.Logging;
 
     public class Startup
     {
@@ -25,14 +26,13 @@ namespace PartyBook.MicroServices.NightClub
             services.AddDbContext<NightClubDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddWebService();
-
+            IdentityModelEventSource.ShowPII = true;
             services.AddTransient<INightClubService, NightClubService>();
             services.AddTransient<IEventService, EventService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-            => app.UseWebService(env, typeof(NightClub).Assembly, typeof(NightClubCreateInputModel).Assembly);
+            => app.UseWebService(env, typeof(NightClub).Assembly, typeof(NightClubCreateInputModel).Assembly).Initialize<NightClubDbContext>();
     }
 }

@@ -37,7 +37,7 @@
                     opt.AllowAnyMethod();
                     opt.AllowAnyHeader();
                 })
-                .UseHttpsRedirection()
+                //.UseHttpsRedirection()
                 .UseRouting()
                 .UseAuthentication()
                 .UseAuthorization()

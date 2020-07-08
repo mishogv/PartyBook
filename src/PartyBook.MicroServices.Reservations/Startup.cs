@@ -32,6 +32,7 @@ namespace PartyBook.MicroServices.Reservations
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-            => app.UseWebService(env, typeof(Reservation).Assembly, typeof(ReservationtCreateInputModel).Assembly);
+            => app.UseWebService(env, typeof(Reservation).Assembly, typeof(ReservationtCreateInputModel).Assembly)
+                .Initialize<ReservationDbContext>();
     }
 }

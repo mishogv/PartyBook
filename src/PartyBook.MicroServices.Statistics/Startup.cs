@@ -33,6 +33,6 @@ namespace PartyBook.MicroServices.Statistics
 
         //TODO : Register Mappings
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-            => app.UseWebService(env, null);
+            => app.UseWebService(env, null).Initialize<StatisticsDbContext>();
     }
 }
