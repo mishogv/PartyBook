@@ -2,6 +2,7 @@
 {
     using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Logging;
 
     public class OidcConfigurationController : Controller

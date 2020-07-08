@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\PartyBook.Configurations\PartyBook.Configurations.csproj" />
     <ProjectReference Include="..\Shared\PartyBook.ViewModels.csproj" />
   </ItemGroup>
 

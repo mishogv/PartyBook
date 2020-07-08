@@ -26,7 +26,7 @@ namespace PartyBook.MicroServices.Reservations
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddWebService();
+            services.AddWebService(this.Configuration);
 
             services.AddTransient<IReservationService, ReservationService>();
         }

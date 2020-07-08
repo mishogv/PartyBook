@@ -2,17 +2,20 @@
 {
     using MassTransit;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
+    using PartyBook.Configurations.Infrastructure;
     using System;
 
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddWebService(
-            this IServiceCollection services)
+            this IServiceCollection services, IConfiguration configuration)
         {
             services
+                .AddApplicationSettings(configuration)
                 .AddTokenAuthentication()
                 .AddSwagger()
                 .AddControllers();

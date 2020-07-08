@@ -28,7 +28,7 @@ namespace PartyBook.MicroServices.Statistics
             services.AddTransient<IStatisticsService, StatisticsService>();
 
             services.AddMessaging(typeof(ReviewCreatedConsumer));
-            services.AddWebService();
+            services.AddWebService(this.Configuration);
         }
 
         //TODO : Register Mappings

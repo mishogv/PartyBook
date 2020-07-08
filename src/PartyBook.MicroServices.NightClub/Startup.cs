@@ -26,7 +26,7 @@ namespace PartyBook.MicroServices.NightClub
             services.AddDbContext<NightClubDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddWebService();
+            services.AddWebService(this.Configuration);
             IdentityModelEventSource.ShowPII = true;
             services.AddTransient<INightClubService, NightClubService>();
             services.AddTransient<IEventService, EventService>();

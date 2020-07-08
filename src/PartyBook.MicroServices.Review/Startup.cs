@@ -26,7 +26,7 @@ namespace PartyBook.MicroServices.Review
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddWebService();
+            services.AddWebService(this.Configuration);
             services.AddMessaging();
             services.AddTransient<IReviewService, ReviewService>();
         }

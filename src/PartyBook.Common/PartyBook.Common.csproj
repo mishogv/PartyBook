@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PartyBook.Configurations\PartyBook.Configurations.csproj" />
     <ProjectReference Include="..\PartyBook.Data.Common\PartyBook.Data.Common.csproj" />
     <ProjectReference Include="..\PartyBook.Services.Mapping\PartyBook.Services.Mapping.csproj" />
     <ProjectReference Include="..\PartyBook\Shared\PartyBook.ViewModels.csproj" />

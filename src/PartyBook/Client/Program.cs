@@ -7,6 +7,8 @@ namespace PartyBook.Client
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
     using Microsoft.Extensions.DependencyInjection;
     using PartyBook.Client.Services;
+    using PartyBook.Configurations;
+    using PartyBook.Configurations.Infrastructure;
 
     public class Program
     {
@@ -15,12 +17,15 @@ namespace PartyBook.Client
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
+            builder.Services.AddApplicationSettings(builder.Configuration);
+
             builder.Services.AddHttpClient("PartyBook.ServerAPI", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
                 .AddHttpMessageHandler(sp => 
                 {
+                    var urls = sp.GetService<ApplicationSettings>();
                     var handler = sp.GetService<AuthorizationMessageHandler>()
                     .ConfigureHandler(
-                        authorizedUrls: new[] { "http://localhost:5002", "http://localhost:5003", "http://localhost:5004", "http://localhost:5005" });
+                        authorizedUrls: new[] { urls.NightClubAppUrl, urls.ReviewAppUrl, urls.ReservationsAppUrl, urls.StatisticsAppUrl });
                     return handler;
                 });
 
@@ -30,6 +35,7 @@ namespace PartyBook.Client
 
             builder.Services.AddTransient<IApiClient, ApiClient>();
             builder.Services.AddTransient<IAuthorizationApiClient, AuthorizationApiClient>();
+
 
             await builder.Build().RunAsync();
         }

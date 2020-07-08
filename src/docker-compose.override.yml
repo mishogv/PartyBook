@@ -30,6 +30,7 @@ services:
 
     partybook.microservices.nightclub:
         image: ${DOCKER_REGISTRY-}partybookmicroservicesnightclub
+        env_file: PartyBook.Configurations/Common.env
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
           - ASPNETCORE_URLS=http://+:80
@@ -49,6 +50,7 @@ services:
 
     partybook.microservices.statistics:
         image: ${DOCKER_REGISTRY-}partybookmicroservicesstatistics
+        env_file: PartyBook.Configurations/Common.env
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
           - ASPNETCORE_URLS=http://+:80
@@ -68,6 +70,7 @@ services:
 
     partybook.microservices.review:
         image: ${DOCKER_REGISTRY-}partybookmicroservicesreview
+        env_file: PartyBook.Configurations/Common.env
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
           - ASPNETCORE_URLS=http://+:80
@@ -87,6 +90,7 @@ services:
 
     partybook.microservices.reservations:
         image: ${DOCKER_REGISTRY-}partybookmicroservicesreservations
+        env_file: PartyBook.Configurations/Common.env
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
           - ASPNETCORE_URLS=http://+:80
@@ -106,6 +110,7 @@ services:
 
     partybook.server:
         image: ${DOCKER_REGISTRY-}partybookserver
+        env_file: PartyBook.Configurations/Common.env
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
           - ASPNETCORE_URLS=http://+:80

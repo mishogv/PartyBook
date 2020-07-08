@@ -18,7 +18,7 @@ namespace PartyBook.MicroServices.Administration
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddWebService()
+            services.AddWebService(this.Configuration)
                 .AddControllersWithViews(options => options
                     .Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
 

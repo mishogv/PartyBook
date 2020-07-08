@@ -1,5 +1,6 @@
 ﻿namespace PartyBook.Client.Services
 {
+    using PartyBook.Configurations;
     using PartyBook.ViewModels.NightClub;
     using System.Collections.Generic;
     using System.Net.Http;
@@ -9,13 +10,15 @@
     public class ApiClient : IApiClient
     {
         private readonly HttpClient client;
+        private readonly ApplicationSettings urls;
 
-        public ApiClient(IHttpClientFactory httpClientFactory)
+        public ApiClient(IHttpClientFactory httpClientFactory, ApplicationSettings settings)
         {
             this.client = httpClientFactory.CreateClient();
+            this.urls = settings;
         }
 
         public async Task<IEnumerable<NightClubGetAllViewModel>> GetNightClubs()
-            => await client.GetFromJsonAsync<IEnumerable<NightClubGetAllViewModel>>("http://localhost:5002/NightClubs");
+            => await client.GetFromJsonAsync<IEnumerable<NightClubGetAllViewModel>>($"{this.urls.NightClubAppUrl}/NightClubs");
     }
 }

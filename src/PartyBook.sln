@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.MicroServices.Adm
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7C5F1435-9502-487C-9CB2-375A2E619CE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyBook.Configurations", "PartyBook.Configurations\PartyBook.Configurations.csproj", "{B7A61569-073A-4F36-B3F3-72797BEABD91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{7C5F1435-9502-487C-9CB2-375A2E619CE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C5F1435-9502-487C-9CB2-375A2E619CE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C5F1435-9502-487C-9CB2-375A2E619CE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7A61569-073A-4F36-B3F3-72797BEABD91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7A61569-073A-4F36-B3F3-72797BEABD91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7A61569-073A-4F36-B3F3-72797BEABD91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7A61569-073A-4F36-B3F3-72797BEABD91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

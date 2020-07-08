@@ -9,6 +9,7 @@ namespace PartyBook.Server
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using PartyBook.Common.Infrastructure;
+    using PartyBook.Configurations.Infrastructure;
     using PartyBook.Data.Identity.Models;
     using PartyBook.Server.Data;
     using PartyBook.Services.Mapping;
@@ -49,6 +50,8 @@ namespace PartyBook.Server
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
+
+            services.AddApplicationSettings(this.Configuration);
 
             services.AddControllersWithViews();
             services.AddRazorPages();
