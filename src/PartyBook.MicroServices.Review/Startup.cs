@@ -23,17 +23,17 @@ namespace PartyBook.MicroServices.Review
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ReviewDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"),
-                    sqlOptions => sqlOptions
-                             .EnableRetryOnFailure(
-                                 maxRetryCount: 10,
-                                 maxRetryDelay: TimeSpan.FromSeconds(30),
-                                 errorNumbersToAdd: null)));
+            //services.AddDbContext<ReviewDbContext>(options =>
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString("DefaultConnection"),
+            //        sqlOptions => sqlOptions
+            //                 .EnableRetryOnFailure(
+            //                     maxRetryCount: 10,
+            //                     maxRetryDelay: TimeSpan.FromSeconds(30),
+            //                     errorNumbersToAdd: null)));
 
-            services.AddWebService(this.Configuration);
-            services.AddMessaging();
+            services.AddWebService<ReviewDbContext>(this.Configuration);
+            services.AddMessaging<ReviewDbContext>(this.Configuration);
             services.AddTransient<IReviewService, ReviewService>();
         }
 

@@ -2,33 +2,35 @@
 {
     using Hangfire;
     using MassTransit;
-    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using PartyBook.Data.Common;
     using PartyBook.Data.Common.Models;
+    using System;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
-    public class MessagesHostedService : IHostedService
+    public class MessagesHostedService<TDbContext> : IHostedService where TDbContext : MessageDbContext
     {
         private readonly IRecurringJobManager recurringJob;
-        private readonly DbContext data;
+        private readonly IServiceProvider serviceProvider;
         private readonly IBus publisher;
 
         public MessagesHostedService(
             IRecurringJobManager recurringJob,
-            DbContext data,
+            IServiceProvider serviceProvider,
             IBus publisher)
         {
             this.recurringJob = recurringJob;
-            this.data = data;
+            this.serviceProvider = serviceProvider;
             this.publisher = publisher;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
             this.recurringJob.AddOrUpdate(
-                nameof(MessagesHostedService),
+                nameof(MessagesHostedService<TDbContext>),
                 () => this.ProcessPendingMessages(),
                 "*/5 * * * * *");
 
@@ -40,7 +42,12 @@
 
         public void ProcessPendingMessages()
         {
-            var messages = this.data
+            using var serviceScope = this.serviceProvider.CreateScope();
+            var serviceProvider = serviceScope.ServiceProvider;
+
+            var data = serviceProvider.GetRequiredService<TDbContext>();
+
+            var messages = data
                 .Set<Message>()
                 .Where(m => !m.Published)
                 .OrderBy(m => m.Id)
@@ -52,7 +59,7 @@
 
                 message.MarkAsPublished();
 
-                this.data.SaveChanges();
+                data.SaveChanges();
             }
         }
     }

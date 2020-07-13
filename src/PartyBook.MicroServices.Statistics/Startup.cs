@@ -33,7 +33,7 @@ namespace PartyBook.MicroServices.Statistics
 
             services.AddTransient<IStatisticsService, StatisticsService>();
 
-            services.AddMessaging(typeof(ReviewCreatedConsumer));
+            services.AddMessaging(this.Configuration, typeof(ReviewCreatedConsumer));
             services.AddWebService(this.Configuration);
         }
 

@@ -1,19 +1,40 @@
 ﻿namespace PartyBook.Common.Infrastructure
 {
     using GreenPipes;
+    using Hangfire;
     using MassTransit;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
+    using PartyBook.Common.Messages;
     using PartyBook.Configurations.Infrastructure;
+    using PartyBook.Data.Common;
     using System;
 
     public static class ServiceCollectionExtensions
     {
+        public static IServiceCollection AddWebService<TDbContext>(
+            this IServiceCollection services, 
+            IConfiguration configuration)
+            where TDbContext : DbContext
+        {
+            services
+                .AddDatabase<TDbContext>(configuration)
+                .AddApplicationSettings(configuration)
+                .AddHealth(configuration)
+                .AddTokenAuthentication()
+                .AddSwagger()
+                .AddControllers();
+
+            return services;
+        }
+
         public static IServiceCollection AddWebService(
-            this IServiceCollection services, IConfiguration configuration)
+            this IServiceCollection services,
+            IConfiguration configuration)
         {
             services
                 .AddApplicationSettings(configuration)
@@ -83,9 +104,11 @@
             return services;
         }
 
-        public static IServiceCollection AddMessaging(
+        public static IServiceCollection AddMessaging<TDbContext>(
                 this IServiceCollection services,
+                IConfiguration configuration,
                 params Type[] consumers)
+            where TDbContext : MessageDbContext
         {
             services
                 .AddMassTransit(mt =>
@@ -113,6 +136,17 @@
                 })
                 .AddMassTransitHostedService();
 
+            services
+                .AddHangfire(config => config
+                    .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+                    .UseSimpleAssemblyNameTypeSerializer()
+                    .UseRecommendedSerializerSettings()
+                    .UseSqlServerStorage(configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddHangfireServer();
+
+            services.AddHostedService<MessagesHostedService<TDbContext>>();
+
             return services;
         }
 
@@ -130,5 +164,20 @@
 
             return services;
         }
+
+        public static IServiceCollection AddDatabase<TDbContext>(
+        this IServiceCollection services,
+        IConfiguration configuration)
+        where TDbContext : DbContext
+        => services
+            .AddScoped<DbContext, TDbContext>()
+            .AddDbContext<TDbContext>(options => options
+                .UseSqlServer(
+                    configuration.GetConnectionString("DefaultConnection"),
+                    sqlOptions => sqlOptions
+                        .EnableRetryOnFailure(
+                            maxRetryCount: 10,
+                            maxRetryDelay: TimeSpan.FromSeconds(30),
+                            errorNumbersToAdd: null)));
     }
 }
