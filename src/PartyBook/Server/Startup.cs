@@ -14,6 +14,7 @@ namespace PartyBook.Server
     using PartyBook.Server.Data;
     using PartyBook.Services.Mapping;
     using PartyBook.ViewModels.NightClub;
+    using System;
     using System.Reflection;
 
     public class Startup
@@ -29,7 +30,12 @@ namespace PartyBook.Server
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    sqlOptions => sqlOptions
+                             .EnableRetryOnFailure(
+                                 maxRetryCount: 10,
+                                 maxRetryDelay: TimeSpan.FromSeconds(30),
+                                 errorNumbersToAdd: null)));
 
             services.AddDefaultIdentity<ApplicationUser>(options =>
                 {
@@ -58,7 +64,6 @@ namespace PartyBook.Server
             services.AddSwagger();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.Initialize<ApplicationDbContext>();
@@ -75,11 +80,9 @@ namespace PartyBook.Server
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
-            //app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
 

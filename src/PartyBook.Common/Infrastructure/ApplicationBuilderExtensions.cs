@@ -1,6 +1,8 @@
 ﻿namespace PartyBook.Common.Infrastructure
 {
+    using HealthChecks.UI.Client;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Diagnostics.HealthChecks;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
@@ -48,6 +50,11 @@
                 })
                 .UseEndpoints(endpoints =>
                 {
+                    endpoints.MapHealthChecks("/health", new HealthCheckOptions
+                    {
+                        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                    });
+
                     endpoints.MapControllers();
                     endpoints.MapFallbackToFile("index.html");
                 });

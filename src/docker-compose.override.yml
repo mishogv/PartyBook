@@ -128,6 +128,25 @@ services:
           context: .
           dockerfile: PartyBook/Server/Dockerfile
 
+    partybook.watchdog:
+        image: ${DOCKER_REGISTRY-}partybookwatchdog
+        env_file: PartyBook.Configurations/Common.env
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+          - ASPNETCORE_URLS=http://+:80
+        ports:
+          - "5008:80"
+        volumes:
+          - ./.aspnet/server/DataProtection-Keys:/root/.aspnet/DataProtection-Keys
+        restart: on-failure
+        networks: 
+          - partybook-network
+        depends_on:
+          - data
+        build:
+          context: .
+          dockerfile: PartyBook.Watchdog/Dockerfile
+
 networks:
     partybook-network:
 

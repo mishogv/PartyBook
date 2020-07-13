@@ -1,0 +1,21 @@
+{
+  "PartyBook.Watchdog": {
+    "commandName": "Project",
+    "launchBrowser": true,
+    "applicationUrl": "http://localhost:5008/healthchecks",
+    "environmentVariables": {
+      "ASPNETCORE_ENVIRONMENT": "Development"
+    }
+  },
+  "profiles": {
+    "PartyBook.Watchdog": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "environmentVariables": {},
+      "httpPort": 55000
+    }
+  }
+}

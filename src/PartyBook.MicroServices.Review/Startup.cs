@@ -10,6 +10,7 @@ namespace PartyBook.MicroServices.Review
     using PartyBook.ViewModels.Review;
     using PartyBook.MicroServices.Review.Data.Models;
     using PartyBook.MicroServices.Review.Data;
+    using System;
 
     public class Startup
     {
@@ -24,7 +25,12 @@ namespace PartyBook.MicroServices.Review
         {
             services.AddDbContext<ReviewDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    sqlOptions => sqlOptions
+                             .EnableRetryOnFailure(
+                                 maxRetryCount: 10,
+                                 maxRetryDelay: TimeSpan.FromSeconds(30),
+                                 errorNumbersToAdd: null)));
 
             services.AddWebService(this.Configuration);
             services.AddMessaging();

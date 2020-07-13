@@ -10,6 +10,7 @@ namespace PartyBook.MicroServices.Reservations
     using PartyBook.MicroServices.Reservations.Data.Models;
     using PartyBook.MicroServices.Reservations.Services;
     using PartyBook.ViewModels.Reservation;
+    using System;
 
     public class Startup
     {
@@ -24,7 +25,12 @@ namespace PartyBook.MicroServices.Reservations
         {
             services.AddDbContext<ReservationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection"), 
+                    sqlOptions => sqlOptions
+                             .EnableRetryOnFailure(
+                                 maxRetryCount: 10,
+                                 maxRetryDelay: TimeSpan.FromSeconds(30),
+                                 errorNumbersToAdd: null)));
 
             services.AddWebService(this.Configuration);
 

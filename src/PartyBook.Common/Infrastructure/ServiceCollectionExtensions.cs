@@ -1,5 +1,6 @@
 ﻿namespace PartyBook.Common.Infrastructure
 {
+    using GreenPipes;
     using MassTransit;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.Extensions.Configuration;
@@ -16,6 +17,7 @@
         {
             services
                 .AddApplicationSettings(configuration)
+                .AddHealth(configuration)
                 .AddTokenAuthentication()
                 .AddSwagger()
                 .AddControllers();
@@ -98,13 +100,33 @@
                             host.Password("rabbitmq");
                         });
 
+                        rmq.UseHealthCheck(bus);
+
                         consumers.ForEach(consumer => rmq.ReceiveEndpoint(consumer.FullName, endpoint =>
                         {
+                            endpoint.PrefetchCount = 6;
+                            endpoint.UseMessageRetry(retry => retry.Interval(10, 1000));
+
                             endpoint.ConfigureConsumer(bus, consumer);
                         }));
                     }));
                 })
                 .AddMassTransitHostedService();
+
+            return services;
+        }
+
+        public static IServiceCollection AddHealth(
+            this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            var healthChecks = services.AddHealthChecks();
+
+            healthChecks
+                .AddSqlServer(configuration.GetConnectionString("DefaultConnection"));
+
+            healthChecks
+                .AddRabbitMQ(rabbitConnectionString: "amqp://rabbitmq:rabbitmq@rabbitmq/");
 
             return services;
         }

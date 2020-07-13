@@ -9,6 +9,7 @@ namespace PartyBook.MicroServices.Statistics
     using PartyBook.MicroServices.Statistics.Data;
     using PartyBook.MicroServices.Statistics.Messages;
     using PartyBook.MicroServices.Statistics.Services;
+    using System;
 
     public class Startup
     {
@@ -23,7 +24,12 @@ namespace PartyBook.MicroServices.Statistics
         {
             services.AddDbContext<StatisticsDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    sqlOptions => sqlOptions
+                             .EnableRetryOnFailure(
+                                 maxRetryCount: 10,
+                                 maxRetryDelay: TimeSpan.FromSeconds(30),
+                                 errorNumbersToAdd: null)));
 
             services.AddTransient<IStatisticsService, StatisticsService>();
 

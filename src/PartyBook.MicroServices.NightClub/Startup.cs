@@ -11,6 +11,7 @@ namespace PartyBook.MicroServices.NightClub
     using PartyBook.MicroServices.NightClub.Data.Models;
     using PartyBook.ViewModels.NightClub;
     using Microsoft.IdentityModel.Logging;
+    using System;
 
     public class Startup
     {
@@ -25,7 +26,13 @@ namespace PartyBook.MicroServices.NightClub
         {
             services.AddDbContext<NightClubDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    sqlOptions => sqlOptions
+                             .EnableRetryOnFailure(
+                                 maxRetryCount: 10,
+                                 maxRetryDelay: TimeSpan.FromSeconds(30),
+                                 errorNumbersToAdd: null)));
+
             services.AddWebService(this.Configuration);
             IdentityModelEventSource.ShowPII = true;
             services.AddTransient<INightClubService, NightClubService>();
