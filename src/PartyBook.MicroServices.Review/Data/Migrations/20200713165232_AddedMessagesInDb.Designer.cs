@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PartyBook.MicroServices.Review.Data;
 
 namespace PartyBook.MicroServices.Review.Migrations
 {
     [DbContext(typeof(ReviewDbContext))]
-    partial class ReviewDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200713165232_AddedMessagesInDb")]
+    partial class AddedMessagesInDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

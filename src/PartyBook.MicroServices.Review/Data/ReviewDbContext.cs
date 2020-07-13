@@ -1,9 +1,10 @@
 ﻿namespace PartyBook.MicroServices.Review.Data
 {
     using Microsoft.EntityFrameworkCore;
+    using PartyBook.Data.Common;
     using PartyBook.MicroServices.Review.Data.Models;
 
-    public class ReviewDbContext : DbContext
+    public class ReviewDbContext : MessageDbContext
     {
         public ReviewDbContext(DbContextOptions<ReviewDbContext> options)
             : base(options)

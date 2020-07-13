@@ -33,7 +33,7 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Configurations", "PartyBook.Configurations\PartyBook.Configurations.csproj", "{B7A61569-073A-4F36-B3F3-72797BEABD91}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Watchdog", "PartyBook.Watchdog\PartyBook.Watchdog.csproj", "{95940CCB-F51F-4150-89C8-3DA7F94EFD9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyBook.Watchdog", "PartyBook.Watchdog\PartyBook.Watchdog.csproj", "{BB5A7AE3-E75B-413C-9529-940C4DEC3536}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,10 +93,10 @@ Global
 		{B7A61569-073A-4F36-B3F3-72797BEABD91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7A61569-073A-4F36-B3F3-72797BEABD91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7A61569-073A-4F36-B3F3-72797BEABD91}.Release|Any CPU.Build.0 = Release|Any CPU
-		{95940CCB-F51F-4150-89C8-3DA7F94EFD9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95940CCB-F51F-4150-89C8-3DA7F94EFD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95940CCB-F51F-4150-89C8-3DA7F94EFD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95940CCB-F51F-4150-89C8-3DA7F94EFD9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB5A7AE3-E75B-413C-9529-940C4DEC3536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB5A7AE3-E75B-413C-9529-940C4DEC3536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB5A7AE3-E75B-413C-9529-940C4DEC3536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB5A7AE3-E75B-413C-9529-940C4DEC3536}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

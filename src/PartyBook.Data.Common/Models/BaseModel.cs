@@ -1,4 +1,4 @@
-﻿namespace PartyBook.Data.Common
+﻿namespace PartyBook.Data.Common.Models
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;

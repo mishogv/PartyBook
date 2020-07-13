@@ -1,6 +1,6 @@
 ﻿namespace PartyBook.MicroServices.Statistics.Data.Models
 {
-    using PartyBook.Data.Common;
+    using PartyBook.Data.Common.Models;
 
     public class RviewStatistic : BaseModel<int>
     {

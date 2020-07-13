@@ -1,6 +1,6 @@
 ﻿namespace PartyBook.MicroServices.Review.Data.Models
 {
-    using PartyBook.Data.Common;
+    using PartyBook.Data.Common.Models;
     using System.ComponentModel.DataAnnotations;
 
     public class Review : BaseModel<int>

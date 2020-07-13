@@ -1,6 +1,6 @@
 ﻿namespace PartyBook.MicroServices.Reservations.Data.Models
 {
-    using PartyBook.Data.Common;
+    using PartyBook.Data.Common.Models;
     using System;
     using System.ComponentModel.DataAnnotations;
 

@@ -1,6 +1,6 @@
 ﻿namespace PartyBook.MicroServices.NightClub.Data.Models
 {
-    using PartyBook.Data.Common;
+    using PartyBook.Data.Common.Models;
     using PartyBook.Services.Mapping;
     using PartyBook.ViewModels.NightClub;
     using System.Collections.Generic;
