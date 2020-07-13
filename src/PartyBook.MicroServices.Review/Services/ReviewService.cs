@@ -3,6 +3,7 @@
     using MassTransit;
     using Microsoft.EntityFrameworkCore;
     using PartyBook.Common.Messages;
+    using PartyBook.Data.Common.Models;
     using PartyBook.MicroServices.Review.Data;
     using PartyBook.MicroServices.Review.Data.Models;
     using System.Collections.Generic;
@@ -38,11 +39,19 @@
                 UserId = userId
             };
 
+            var messageData = new ReviewCreatedMessage() { ReviewId = review.Id };
+            var message = new Message(messageData);
+
+            var messageInDb = await this.dbContext.Messages.AddAsync(message);
             await dbContext.Reviews.AddAsync(review);
 
             await dbContext.SaveChangesAsync();
 
-            await this.publisher.Publish(new ReviewCreatedMessage() { ReviewId = review.Id });
+            await this.publisher.Publish(messageData);
+
+            messageInDb.Entity.MarkAsPublished();
+
+            await this.dbContext.SaveChangesAsync();
 
             return review.Id;
         }
