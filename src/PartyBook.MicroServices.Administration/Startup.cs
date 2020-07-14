@@ -27,6 +27,10 @@ namespace PartyBook.MicroServices.Administration
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
             => app.UseWebService(env)
-            .UseEndpoints(endpoints => endpoints.MapRazorPages());
+            .UseEndpoints(endpoints => 
+            {
+                endpoints.MapRazorPages();
+                endpoints.MapControllers();
+            });
     }
 }

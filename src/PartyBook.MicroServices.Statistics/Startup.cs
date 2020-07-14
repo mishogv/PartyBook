@@ -22,19 +22,9 @@ namespace PartyBook.MicroServices.Statistics
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<StatisticsDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"),
-                    sqlOptions => sqlOptions
-                             .EnableRetryOnFailure(
-                                 maxRetryCount: 10,
-                                 maxRetryDelay: TimeSpan.FromSeconds(30),
-                                 errorNumbersToAdd: null)));
-
+            services.AddWebService<StatisticsDbContext>(this.Configuration);
+            services.AddMessaging<StatisticsDbContext>(this.Configuration, typeof(ReviewCreatedConsumer));
             services.AddTransient<IStatisticsService, StatisticsService>();
-
-            services.AddMessaging(this.Configuration, typeof(ReviewCreatedConsumer));
-            services.AddWebService(this.Configuration);
         }
 
         //TODO : Register Mappings
