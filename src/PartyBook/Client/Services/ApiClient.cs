@@ -12,9 +12,9 @@
         private readonly HttpClient client;
         private readonly ApplicationSettings urls;
 
-        public ApiClient(IHttpClientFactory httpClientFactory, ApplicationSettings settings)
+        public ApiClient(HttpClient client, ApplicationSettings settings)
         {
-            this.client = httpClientFactory.CreateClient();
+            this.client = client;
             this.urls = settings;
         }
 

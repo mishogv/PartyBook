@@ -1,10 +1,8 @@
 namespace PartyBook.Server
 {
-    using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
@@ -14,8 +12,9 @@ namespace PartyBook.Server
     using PartyBook.Server.Data;
     using PartyBook.Services.Mapping;
     using PartyBook.ViewModels.NightClub;
-    using System;
     using System.Reflection;
+    using PartyBook.Data.Common;
+    using PartyBook.Server.Services.Identity;
 
     public class Startup
     {
@@ -28,16 +27,9 @@ namespace PartyBook.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"),
-                    sqlOptions => sqlOptions
-                             .EnableRetryOnFailure(
-                                 maxRetryCount: 10,
-                                 maxRetryDelay: TimeSpan.FromSeconds(30),
-                                 errorNumbersToAdd: null)));
+            services.AddDatabase<ApplicationDbContext>(this.Configuration);
 
-            services.AddDefaultIdentity<ApplicationUser>(options =>
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 {
                     options.Password.RequiredLength = 6;
                     options.Password.RequireDigit = false;
@@ -45,23 +37,17 @@ namespace PartyBook.Server
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireUppercase = false;
                 })
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddIdentityServer(options => 
-            {
-                options.IssuerUri = "http://localhost:5000";
-            })
-                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+            services.AddTokenAuthentication(this.Configuration);
 
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
+            services.AddTransient<IDataSeeder, IdentityDataSeeder>()
+                    .AddTransient<IIdentityService, IdentityService>()
+                    .AddTransient<ITokenGeneratorService, TokenGeneratorService>();
 
             services.AddApplicationSettings(this.Configuration);
 
-            services.AddControllersWithViews();
-            services.AddRazorPages();
-            services.AddSwagger();
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -88,20 +74,11 @@ namespace PartyBook.Server
 
             app.UseRouting();
 
-            app.UseIdentityServer();
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseSwagger();
-
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
-
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
             });

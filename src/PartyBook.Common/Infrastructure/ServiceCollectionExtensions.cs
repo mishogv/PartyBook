@@ -7,12 +7,16 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.IdentityModel.Logging;
     using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
     using PartyBook.Common.Messages;
+    using PartyBook.Common.Services.Identity;
+    using PartyBook.Configurations;
     using PartyBook.Configurations.Infrastructure;
     using PartyBook.Data.Common;
     using System;
+    using System.Text;
 
     public static class ServiceCollectionExtensions
     {
@@ -25,7 +29,7 @@
                 .AddDatabase<TDbContext>(configuration)
                 .AddApplicationSettings(configuration)
                 .AddHealth(configuration)
-                .AddTokenAuthentication()
+                .AddTokenAuthentication(configuration)
                 .AddSwagger()
                 .AddControllers();
 
@@ -39,26 +43,51 @@
             services
                 .AddApplicationSettings(configuration)
                 .AddHealth(configuration)
-                .AddTokenAuthentication()
+                .AddTokenAuthentication(configuration)
                 .AddSwagger()
                 .AddControllers();
 
             return services;
         }
 
-        public static IServiceCollection AddTokenAuthentication(this IServiceCollection services)
+        public static IServiceCollection AddTokenAuthentication(
+            this IServiceCollection services,
+            IConfiguration configuration,
+            JwtBearerEvents events = null)
         {
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.RequireHttpsMetadata = false;
-                    options.Authority = "http://src_partybook.server_1";
-                    options.Audience = "PartyBook.ServerAPI";
-                    options.TokenValidationParameters = new TokenValidationParameters()
-                    {   
-                        NameClaimType = "name"
-                    };
-                });
+            var secret = configuration
+                .GetSection(nameof(ApplicationSettings))
+                .GetValue<string>(nameof(ApplicationSettings.Secret));
+
+            var key = Encoding.ASCII.GetBytes(secret);
+            IdentityModelEventSource.ShowPII = true;
+
+            services
+              .AddAuthentication(authentication =>
+              {
+                  authentication.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                  authentication.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+              })
+              .AddJwtBearer(bearer =>
+              {
+                  bearer.RequireHttpsMetadata = false;
+                  bearer.SaveToken = true;
+                  bearer.TokenValidationParameters = new TokenValidationParameters
+                  {
+                      ValidateIssuerSigningKey = true,
+                      IssuerSigningKey = new SymmetricSecurityKey(key),
+                      ValidateIssuer = false,
+                      ValidateAudience = false
+                  };
+
+                  if (events != null)
+                  {
+                      bearer.Events = events;
+                  }
+              });
+
+            services.AddHttpContextAccessor();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
 
             return services;
         }

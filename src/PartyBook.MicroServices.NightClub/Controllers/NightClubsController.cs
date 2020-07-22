@@ -42,7 +42,7 @@
             var userId = User.GetCurrentUserId();
             var nightClub = await this.nightClubService.CreateAsync(inputModel.Name, inputModel.CoverUrl, inputModel.Description, inputModel.BusinessHours, inputModel.Location, inputModel.TelephoneForReservations, userId);
 
-            return this.Created(nameof(Create), nightClub);
+            return this.Created(nameof(Create), nightClub.Name);
         }
 
         [HttpPut]

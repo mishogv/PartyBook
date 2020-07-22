@@ -9,5 +9,7 @@
         public string ReservationsAppUrl { get; set; }
 
         public string StatisticsAppUrl { get; set; }
+
+        public string Secret { get; set; }
     }
 }

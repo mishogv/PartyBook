@@ -13,7 +13,8 @@
                         NightClubAppUrl = configuration.GetSection("ApplicationSettings:NightClubAppUrl").Value,
                         ReviewAppUrl = configuration.GetSection("ApplicationSettings:ReviewAppUrl").Value,
                         ReservationsAppUrl = configuration.GetSection("ApplicationSettings:ReservationsAppUrl").Value,
-                        StatisticsAppUrl = configuration.GetSection("ApplicationSettings:StatisticsAppUrl").Value
-                    });
+                        StatisticsAppUrl = configuration.GetSection("ApplicationSettings:StatisticsAppUrl").Value,
+                        Secret = configuration.GetSection("ApplicationSettings:Secret").Value
+            });
     }
 }

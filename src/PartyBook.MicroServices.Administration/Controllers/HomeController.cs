@@ -12,9 +12,15 @@
             //TODO : FIX
             if (this.User.IsAdministrator())
             {
-                return this.RedirectToAction(nameof(Index), "Statistics");
+                return this.RedirectToAction("Privacy", "Home");
             }
 
+            return this.View();
+        }
+
+        [AuthorizeAdministrator]
+        public IActionResult Privacy()
+        {
             return this.View();
         }
 

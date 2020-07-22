@@ -1,4 +1,7 @@
 {
+  "ApplicationSettings": {
+    "Secret" :  "some very strong secret key 123123"
+  },
   "profiles": {
     "SelfHost": {
       "commandName": "Project",
@@ -6,7 +9,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:5000"
+      "applicationUrl": "http://localhost:5030"
     },
     "Docker": {
       "commandName": "Docker",

@@ -9,7 +9,6 @@
     using Microsoft.Extensions.Hosting;
     using PartyBook.Data.Common;
     using PartyBook.Services.Mapping;
-    using PartyBook.ViewModels.NightClub;
     using System.Reflection;
 
     public static class ApplicationBuilderExtensions
@@ -23,12 +22,10 @@
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //app.UseDatabaseErrorPage();
             }
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -39,7 +36,6 @@
                     opt.AllowAnyMethod();
                     opt.AllowAnyHeader();
                 })
-                //.UseHttpsRedirection()
                 .UseRouting()
                 .UseAuthentication()
                 .UseAuthorization()

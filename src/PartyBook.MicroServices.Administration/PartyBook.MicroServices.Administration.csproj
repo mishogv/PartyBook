@@ -2,13 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.2.0-preview3.20168.3" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PartyBook.Common\PartyBook.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\" />
     <Folder Include="Views\Statistics\" />
   </ItemGroup>
 
