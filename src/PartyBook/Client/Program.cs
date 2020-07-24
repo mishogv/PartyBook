@@ -6,6 +6,11 @@ namespace PartyBook.Client
     using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
     using Microsoft.Extensions.DependencyInjection;
+    using PartyBook.Client.Services;
+    using PartyBook.Configurations;
+    using PartyBook.Configurations.Infrastructure;
+    using Blazored.LocalStorage;
+    using Microsoft.AspNetCore.Components.Authorization;
 
     public class Program
     {
@@ -14,13 +19,32 @@ namespace PartyBook.Client
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
-            builder.Services.AddHttpClient("PartyBook.ServerAPI", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
-                .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+            builder.Services.AddApplicationSettings(builder.Configuration);
+            //builder.Services.AddHttpClient();
+            //builder.Services.AddHttpClient("PartyBook.ServerAPI", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+            //    .AddHttpMessageHandler(sp =>
+            //    {
+            //        var urls = sp.GetService<ApplicationSettings>();
+            //        .ConfigureHandler(
+            //            authorizedUrls: new[] { urls.NightClubAppUrl, urls.ReviewAppUrl, urls.ReservationsAppUrl, urls.StatisticsAppUrl });
+            //        return handler;
+            //    });
+            builder.Services.AddSingleton(
+               new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            // Supply HttpClient instances that include access tokens when making requests to the server project
-            builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("PartyBook.ServerAPI"));
+            //builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("PartyBook.ServerAPI"));
 
-            builder.Services.AddApiAuthorization();
+            builder.Services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
+
+            builder.Services.AddBlazoredLocalStorage();
+            builder.Services.AddAuthorizationCore();
+
+            //builder.Services.AddApiAuthorization();
+
+            builder.Services.AddTransient<IApiClient, ApiClient>();
+            builder.Services.AddTransient<IAuthorizationApiClient, AuthorizationApiClient>();
+
 
             await builder.Build().RunAsync();
         }

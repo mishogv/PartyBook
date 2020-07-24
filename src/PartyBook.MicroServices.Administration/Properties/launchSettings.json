@@ -1,0 +1,10 @@
+﻿{
+  "PartyBook.MicroServices.Administration": {
+    "commandName": "Project",
+    "launchBrowser": true,
+    "applicationUrl": "http://localhost:5009",
+    "environmentVariables": {
+      "ASPNETCORE_ENVIRONMENT": "Development"
+    }
+  }
+}

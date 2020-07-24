@@ -1,0 +1,191 @@
+version: '3.8'
+
+services:
+    data:
+        container_name: sqlserver
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        ports: 
+            - "1433:1433"
+        environment:
+            - ACCEPT_EULA=Y
+            - SA_PASSWORD=yourStrongPassword12!@
+        volumes: 
+            - sqldata:/var/opt/mssql 
+        networks: 
+            - partybook-network
+
+    messages:
+        container_name: rabbitmq
+        image: rabbitmq:3-management
+        ports:
+            - "15672:15672"
+            - "5672:5672"
+        hostname: "rabbitmq"
+        environment:
+            - RABBITMQ_ERLANG_COOKIE=Rand0mR4bbitMqCo0k1e
+            - RABBITMQ_DEFAULT_USER=rabbitmq
+            - RABBITMQ_DEFAULT_PASS=rabbitmq
+        networks: 
+            - partybook-network
+
+    partybook.microservices.nightclub:
+        image: ${DOCKER_REGISTRY-}partybookmicroservicesnightclub
+        env_file: PartyBook.Configurations/Common.env
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+          - ASPNETCORE_URLS=http://+:80
+          - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=PartyBookNightClubs;User Id=sa; Password=yourStrongPassword12!@;MultipleActiveResultSets=true
+        ports:
+          - "5002:80"
+        volumes:
+          - ./.aspnet/nightclub/DataProtection-Keys:/root/.aspnet/DataProtection-Keys
+        restart: on-failure
+        networks: 
+          - partybook-network
+        depends_on:
+          - data
+        build:
+          context: .
+          dockerfile: PartyBook.MicroServices.NightClub/Dockerfile
+
+    partybook.microservices.statistics:
+        image: ${DOCKER_REGISTRY-}partybookmicroservicesstatistics
+        env_file: PartyBook.Configurations/Common.env
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+          - ASPNETCORE_URLS=http://+:80
+          - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=PartyBookStatistics;User Id=sa; Password=yourStrongPassword12!@;MultipleActiveResultSets=true
+        ports:
+          - "5005:80"
+        volumes:
+          - ./.aspnet/statistics/DataProtection-Keys:/root/.aspnet/DataProtection-Keys
+        restart: on-failure
+        networks: 
+          - partybook-network
+        depends_on:
+          - data
+        build:
+          context: .
+          dockerfile: PartyBook.MicroServices.Statistics/Dockerfile
+
+    partybook.microservices.review:
+        image: ${DOCKER_REGISTRY-}partybookmicroservicesreview
+        env_file: PartyBook.Configurations/Common.env
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+          - ASPNETCORE_URLS=http://+:80
+          - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=PartyBookReviews;User Id=sa; Password=yourStrongPassword12!@;MultipleActiveResultSets=true
+        ports:
+          - "5003:80"
+        volumes:
+          - ./.aspnet/review/DataProtection-Keys:/root/.aspnet/DataProtection-Keys
+        restart: on-failure
+        networks: 
+          - partybook-network
+        depends_on:
+          - data
+        build:
+          context: .
+          dockerfile: PartyBook.MicroServices.Review/Dockerfile
+
+    partybook.microservices.reservations:
+        image: ${DOCKER_REGISTRY-}partybookmicroservicesreservations
+        env_file: PartyBook.Configurations/Common.env
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+          - ASPNETCORE_URLS=http://+:80
+          - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=PartyBookReservations;User Id=sa; Password=yourStrongPassword12!@;MultipleActiveResultSets=true
+        ports:
+          - "5004:80"
+        volumes:
+          - ./.aspnet/reservations/DataProtection-Keys:/root/.aspnet/DataProtection-Keys
+        restart: on-failure
+        networks: 
+          - partybook-network
+        depends_on:
+          - data
+        build:
+          context: .
+          dockerfile: PartyBook.MicroServices.Reservations/Dockerfile
+
+    partybook.server:
+        image: ${DOCKER_REGISTRY-}partybookserver
+        env_file: PartyBook.Configurations/Common.env
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+          - ASPNETCORE_URLS=http://+:80
+          - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=PartyBookIdentity;User Id=sa; Password=yourStrongPassword12!@;MultipleActiveResultSets=true
+        ports:
+          - "5000:80"
+        volumes:
+          - ./.aspnet/server/DataProtection-Keys:/root/.aspnet/DataProtection-Keys
+        restart: on-failure
+        networks: 
+          - partybook-network
+        depends_on:
+          - data
+        build:
+          context: .
+          dockerfile: PartyBook/Server/Dockerfile
+
+    partybook.watchdog:
+        image: ${DOCKER_REGISTRY-}partybookwatchdog
+        env_file: PartyBook.Configurations/Common.env
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+          - ASPNETCORE_URLS=http://+:80
+        ports:
+          - "5008:80"
+        volumes:
+          - ./.aspnet/server/DataProtection-Keys:/root/.aspnet/DataProtection-Keys
+        restart: on-failure
+        networks: 
+          - partybook-network
+        depends_on:
+          - data
+        build:
+          context: .
+          dockerfile: PartyBook.Watchdog/Dockerfile
+
+
+    partybook.microservices.administration:
+        image: ${DOCKER_REGISTRY-}partybookmicroservicesadministration
+        env_file: PartyBook.Configurations/Common.env
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+          - ASPNETCORE_URLS=http://+:80
+        ports:
+          - "5009:80"
+        volumes:
+          - ./.aspnet/administration/DataProtection-Keys:/root/.aspnet/DataProtection-Keys
+        restart: on-failure
+        networks: 
+          - partybook-network
+        depends_on:
+          - data
+        build:
+          context: .
+          dockerfile: PartyBook.MicroServices.Administration/Dockerfile
+
+    partybook.microservices.gateway:
+        image: ${DOCKER_REGISTRY-}partybookmicroservicesgateway
+        env_file: PartyBook.Configurations/Common.env
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+          - ASPNETCORE_URLS=http://+:80
+        ports:
+          - "5013:80"
+        volumes:
+          - ./.aspnet/gateway/DataProtection-Keys:/root/.aspnet/DataProtection-Keys
+        restart: on-failure
+        networks: 
+          - partybook-network
+        build:
+          context: .
+          dockerfile: PartyBook.MicroServices.Gateway/Dockerfile
+
+networks:
+    partybook-network:
+
+volumes:
+    sqldata:
