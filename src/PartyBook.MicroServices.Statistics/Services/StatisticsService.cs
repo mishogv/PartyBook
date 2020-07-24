@@ -3,7 +3,9 @@
     using Microsoft.EntityFrameworkCore;
     using PartyBook.MicroServices.Statistics.Data;
     using PartyBook.MicroServices.Statistics.Data.Models;
+    using PartyBook.ViewModels.Statistics;
     using System.Threading.Tasks;
+    using PartyBook.Services.Mapping;
 
     public class StatisticsService : IStatisticsService
     {
@@ -32,6 +34,11 @@
                 await this.dbContext.AddAsync(statistic);
                 await this.dbContext.SaveChangesAsync();
             }
+        }
+
+        public async Task<StatisticsGetAllViewModel> GetAllAsync()
+        {
+            return (await this.dbContext.RviewStatistics.FirstOrDefaultAsync()).MapTo<StatisticsGetAllViewModel>();
         }
     }
 }

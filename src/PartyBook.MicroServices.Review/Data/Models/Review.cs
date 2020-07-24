@@ -1,9 +1,11 @@
 ﻿namespace PartyBook.MicroServices.Review.Data.Models
 {
     using PartyBook.Data.Common.Models;
+    using PartyBook.Services.Mapping;
+    using PartyBook.ViewModels.Review;
     using System.ComponentModel.DataAnnotations;
 
-    public class Review : BaseModel<int>
+    public class Review : BaseModel<int>, IMapTo<ReviewGetViewModel>
     {
         [Range(1, 10)]
         public int Raiting { get; set; }

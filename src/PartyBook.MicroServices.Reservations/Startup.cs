@@ -23,16 +23,7 @@ namespace PartyBook.MicroServices.Reservations
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ReservationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"), 
-                    sqlOptions => sqlOptions
-                             .EnableRetryOnFailure(
-                                 maxRetryCount: 10,
-                                 maxRetryDelay: TimeSpan.FromSeconds(30),
-                                 errorNumbersToAdd: null)));
-
-            services.AddWebService(this.Configuration);
+            services.AddWebService<ReservationDbContext>(this.Configuration);
 
             services.AddTransient<IReservationService, ReservationService>();
         }

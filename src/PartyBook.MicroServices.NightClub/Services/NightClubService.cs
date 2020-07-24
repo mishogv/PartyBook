@@ -7,6 +7,7 @@
     using PartyBook.ViewModels.NightClub;
     using PartyBook.MicroServices.NightClub.Data.Models;
     using System.Collections.Generic;
+    using PartyBook.ViewModels.Gateway;
 
     public class NightClubService : INightClubService
     {
@@ -21,8 +22,8 @@
         public async Task<IEnumerable<NightClubGetAllViewModel>> GetAllAsync()
             => await this.dbContext.NightClubs.To<NightClubGetAllViewModel>().ToListAsync();
 
-        public async Task<NightClubCreateViewModel> GetByIdAsync(string id)
-            => (await dbContext.NightClubs.FindAsync(id))?.MapTo<NightClubCreateViewModel>();
+        public async Task<NightClubGatewayViewModel> GetByIdAsync(string id)
+            => (await dbContext.NightClubs.FindAsync(id))?.MapTo<NightClubGatewayViewModel>();
 
         public async Task<NightClubCreateViewModel> GetByNameAsync(string name)
             => (await dbContext.NightClubs.FirstOrDefaultAsync(x => x.Name.ToLower() == name.ToLower()))?.MapTo<NightClubCreateViewModel>();

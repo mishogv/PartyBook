@@ -10,6 +10,8 @@
 
         public string StatisticsAppUrl { get; set; }
 
+        public string StatisticsAppInternalUrl { get; set; }
+
         public string Secret { get; set; }
     }
 }

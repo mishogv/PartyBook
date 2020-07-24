@@ -5,6 +5,7 @@
     using PartyBook.Common.Controllers;
     using PartyBook.Common.Infrastructure;
     using PartyBook.MicroServices.NightClub.Services;
+    using PartyBook.ViewModels.Gateway;
     using PartyBook.ViewModels.NightClub;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -32,7 +33,7 @@
             =>  await this.nightClubService.GetByNameAsync(name);
 
         [HttpGet("GetById/{id}")]
-        public async Task<ActionResult<NightClubCreateViewModel>> GetById([FromRoute][Required]string id)
+        public async Task<ActionResult<NightClubGatewayViewModel>> GetById([FromRoute][Required]string id)
             => await this.nightClubService.GetByIdAsync(id);
 
         [HttpPost]

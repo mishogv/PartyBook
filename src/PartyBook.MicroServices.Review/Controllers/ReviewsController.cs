@@ -21,7 +21,7 @@
         }
 
         [HttpGet("{id}")]
-        public async Task<IEnumerable<int>> Get([FromRoute][Required]string id)
+        public async Task<IEnumerable<ReviewGetViewModel>> Get([FromRoute][Required]string id)
             => await this.reviewService.GetAsync(id);
 
         [HttpPost]

@@ -1,11 +1,12 @@
 ﻿namespace PartyBook.MicroServices.Review.Services
 {
+    using PartyBook.ViewModels.Review;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public interface IReviewService
     {
-        Task<IEnumerable<int>> GetAsync(string nightClubId);
+        Task<IEnumerable<ReviewGetViewModel>> GetAsync(string nightClubId);
 
         Task<int> CreateAsync(int raiting, string description, string userId, string nightClubId);
 

@@ -2,12 +2,13 @@
 {
     using PartyBook.Data.Common.Models;
     using PartyBook.Services.Mapping;
+    using PartyBook.ViewModels.Gateway;
     using PartyBook.ViewModels.NightClub;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class NightClub : BaseModel<string>, IMapTo<NightClubCreateViewModel>, IMapFrom<NightClubCreateViewModel>, IMapTo<NightClubGetAllViewModel>
+    public class NightClub : BaseModel<string>, IMapTo<NightClubCreateViewModel>, IMapFrom<NightClubCreateViewModel>, IMapTo<NightClubGetAllViewModel>, IMapTo<NightClubGatewayViewModel>
     {
         private const int MinLength = 3;
         private const int MaxLength = 30;

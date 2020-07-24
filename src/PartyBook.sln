@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Configurations", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Watchdog", "PartyBook.Watchdog\PartyBook.Watchdog.csproj", "{BB5A7AE3-E75B-413C-9529-940C4DEC3536}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Microservices.Gateway", "PartyBook.Microservices.Gateway\PartyBook.Microservices.Gateway.csproj", "{3E337FDA-606F-4A01-983E-33BAB82ED394}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{BB5A7AE3-E75B-413C-9529-940C4DEC3536}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB5A7AE3-E75B-413C-9529-940C4DEC3536}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB5A7AE3-E75B-413C-9529-940C4DEC3536}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E337FDA-606F-4A01-983E-33BAB82ED394}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E337FDA-606F-4A01-983E-33BAB82ED394}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E337FDA-606F-4A01-983E-33BAB82ED394}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E337FDA-606F-4A01-983E-33BAB82ED394}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,6 +114,7 @@ Global
 		{5C5482A4-B41B-48CD-AAD8-82D262560A62} = {597E5163-FA70-42DA-8ADE-AE368AC5D149}
 		{872BEB37-DABE-42D0-9D54-F7BF9625175A} = {597E5163-FA70-42DA-8ADE-AE368AC5D149}
 		{9019F957-C172-453C-A431-194A14582F5C} = {597E5163-FA70-42DA-8ADE-AE368AC5D149}
+		{3E337FDA-606F-4A01-983E-33BAB82ED394} = {597E5163-FA70-42DA-8ADE-AE368AC5D149}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {95D8677D-B3BF-4F07-8C26-2ACC0CBC796C}

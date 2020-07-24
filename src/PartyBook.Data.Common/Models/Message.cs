@@ -4,7 +4,7 @@
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Message
+    public class Message : BaseModel<int>
     {
         public string serializedData;
 
@@ -15,11 +15,9 @@
         {
         }
 
-        public int Id { get; private set; }
-
         public Type Type { get; private set; }
 
-        public bool Published { get; private set; }
+        public bool Published { get; private set; } = false;
 
         public void MarkAsPublished() => this.Published = true;
 

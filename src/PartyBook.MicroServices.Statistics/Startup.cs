@@ -6,10 +6,13 @@ namespace PartyBook.MicroServices.Statistics
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using PartyBook.Common.Infrastructure;
+    using PartyBook.Data.Common;
     using PartyBook.MicroServices.Statistics.Data;
     using PartyBook.MicroServices.Statistics.Messages;
     using PartyBook.MicroServices.Statistics.Services;
+    using PartyBook.ViewModels.Statistics;
     using System;
+    using System.Reflection;
 
     public class Startup
     {
@@ -25,10 +28,11 @@ namespace PartyBook.MicroServices.Statistics
             services.AddWebService<StatisticsDbContext>(this.Configuration);
             services.AddMessaging<StatisticsDbContext>(this.Configuration, typeof(ReviewCreatedConsumer));
             services.AddTransient<IStatisticsService, StatisticsService>();
+            services.AddTransient<IDataSeeder, StatisticsDataSeeder>();
         }
 
         //TODO : Register Mappings
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-            => app.UseWebService(env, null).Initialize<StatisticsDbContext>();
+            => app.UseWebService(env, typeof(StatisticsGetAllViewModel).Assembly, Assembly.GetExecutingAssembly()).Initialize<StatisticsDbContext>();
     }
 }

@@ -6,9 +6,11 @@
     using PartyBook.Data.Common.Models;
     using PartyBook.MicroServices.Review.Data;
     using PartyBook.MicroServices.Review.Data.Models;
+    using PartyBook.ViewModels.Review;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using PartyBook.Services.Mapping;
 
     public class ReviewService : IReviewService
     {
@@ -21,12 +23,12 @@
             this.publisher = publisher;
         }
 
-        public async Task<IEnumerable<int>> GetAsync(string nightClubId)
+        public async Task<IEnumerable<ReviewGetViewModel>> GetAsync(string nightClubId)
             => await dbContext
                 .Reviews
                 .Where(x => x.NightClubId == nightClubId)
                 .OrderByDescending(x => x.Raiting)
-                .Select(x => x.Id)
+                .To<ReviewGetViewModel>()
                 .ToListAsync();
 
         public async Task<int> CreateAsync(int raiting, string description, string userId, string nightClubId)

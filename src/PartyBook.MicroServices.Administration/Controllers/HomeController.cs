@@ -9,10 +9,9 @@
     {
         public IActionResult Index()
         {
-            //TODO : FIX
             if (this.User.IsAdministrator())
             {
-                return this.RedirectToAction("Privacy", "Home");
+                return this.RedirectToAction("Index", "Statistics");
             }
 
             return this.View();

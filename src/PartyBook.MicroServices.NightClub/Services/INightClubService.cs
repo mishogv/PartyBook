@@ -1,5 +1,6 @@
 ﻿namespace PartyBook.MicroServices.NightClub.Services
 {
+    using PartyBook.ViewModels.Gateway;
     using PartyBook.ViewModels.NightClub;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -8,7 +9,7 @@
     {
         Task<IEnumerable<NightClubGetAllViewModel>> GetAllAsync();
 
-        Task<NightClubCreateViewModel> GetByIdAsync(string id);
+        Task<NightClubGatewayViewModel> GetByIdAsync(string id);
 
         Task<NightClubCreateViewModel> GetByNameAsync(string name);
 

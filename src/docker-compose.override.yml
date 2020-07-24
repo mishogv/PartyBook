@@ -167,6 +167,23 @@ services:
           context: .
           dockerfile: PartyBook.MicroServices.Administration/Dockerfile
 
+    partybook.microservices.gateway:
+        image: ${DOCKER_REGISTRY-}partybookmicroservicesgateway
+        env_file: PartyBook.Configurations/Common.env
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+          - ASPNETCORE_URLS=http://+:80
+        ports:
+          - "5013:80"
+        volumes:
+          - ./.aspnet/gateway/DataProtection-Keys:/root/.aspnet/DataProtection-Keys
+        restart: on-failure
+        networks: 
+          - partybook-network
+        build:
+          context: .
+          dockerfile: PartyBook.MicroServices.Gateway/Dockerfile
+
 networks:
     partybook-network:
 
