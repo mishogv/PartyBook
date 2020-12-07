@@ -29,7 +29,7 @@ services:
             - partybook-network
 
     partybook.microservices.nightclub:
-        image: ${DOCKER_REGISTRY-}partybookmicroservicesnightclub
+        image: mishogv/partybookmicroservicesnightclub
         env_file: PartyBook.Configurations/Common.env
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
@@ -49,7 +49,7 @@ services:
           dockerfile: PartyBook.MicroServices.NightClub/Dockerfile
 
     partybook.microservices.statistics:
-        image: ${DOCKER_REGISTRY-}partybookmicroservicesstatistics
+        image: mishogv/partybookmicroservicesstatistics
         env_file: PartyBook.Configurations/Common.env
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
@@ -69,7 +69,7 @@ services:
           dockerfile: PartyBook.MicroServices.Statistics/Dockerfile
 
     partybook.microservices.review:
-        image: ${DOCKER_REGISTRY-}partybookmicroservicesreview
+        image: mishogv/partybookmicroservicesreview
         env_file: PartyBook.Configurations/Common.env
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
@@ -89,7 +89,7 @@ services:
           dockerfile: PartyBook.MicroServices.Review/Dockerfile
 
     partybook.microservices.reservations:
-        image: ${DOCKER_REGISTRY-}partybookmicroservicesreservations
+        image: mishogv/partybookmicroservicesreservations
         env_file: PartyBook.Configurations/Common.env
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
@@ -109,7 +109,7 @@ services:
           dockerfile: PartyBook.MicroServices.Reservations/Dockerfile
 
     partybook.server:
-        image: ${DOCKER_REGISTRY-}partybookserver
+        image: mishogv/partybookserver
         env_file: PartyBook.Configurations/Common.env
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
@@ -129,7 +129,7 @@ services:
           dockerfile: PartyBook/Server/Dockerfile
 
     partybook.watchdog:
-        image: ${DOCKER_REGISTRY-}partybookwatchdog
+        image: mishogv/partybookwatchdog
         env_file: PartyBook.Configurations/Common.env
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
@@ -149,7 +149,7 @@ services:
 
 
     partybook.microservices.administration:
-        image: ${DOCKER_REGISTRY-}partybookmicroservicesadministration
+        image: mishogv/partybookmicroservicesadministration
         env_file: PartyBook.Configurations/Common.env
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
@@ -168,7 +168,7 @@ services:
           dockerfile: PartyBook.MicroServices.Administration/Dockerfile
 
     partybook.microservices.gateway:
-        image: ${DOCKER_REGISTRY-}partybookmicroservicesgateway
+        image: mishogv/partybookmicroservicesgateway
         env_file: PartyBook.Configurations/Common.env
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
