@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Configurations", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Watchdog", "PartyBook.Watchdog\PartyBook.Watchdog.csproj", "{BB5A7AE3-E75B-413C-9529-940C4DEC3536}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Microservices.Gateway", "PartyBook.Microservices.Gateway\PartyBook.Microservices.Gateway.csproj", "{3E337FDA-606F-4A01-983E-33BAB82ED394}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.MicroServices.Gateway", "PartyBook.Microservices.Gateway\PartyBook.MicroServices.Gateway.csproj", "{3E337FDA-606F-4A01-983E-33BAB82ED394}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
