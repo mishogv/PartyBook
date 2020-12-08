@@ -15,8 +15,7 @@ pipeline {
       steps {
         powershell(script: """ 
           cd src
-          dotnet test
-          cd ..
+          dotnet test \PartyBook.Tests\PartyBook.Tests.csproj
         """)
       }
     }
