@@ -36,21 +36,28 @@ pipeline {
     }
     stage('Run Test Application') {
       steps {
-        powershell(script: 'docker-compose up -d')    
+		powershell(script: """ 
+		  cd src
+		  docker-compose up -d
+        """)		
       }
     }
     stage('Run Integration Tests') {
       steps { 
 		powershell(script: """ 
-          cd ..
-          ./Tests/ContainerTests.ps1
           cd src
+		  cd Tests
+          ContainerTests.ps1
         """)
       }
     }
     stage('Stop Test Application') {
       steps {
         powershell(script: 'docker-compose down') 
+		powershell(script: """ 
+          cd src
+          docker-compose down
+        """)
         // powershell(script: 'docker volumes prune -f')   		
       }
       post {
