@@ -24,6 +24,7 @@ pipeline {
     stage('Docker Build') {
       steps {
 		powershell(script: """ 
+		  dir
 		  docker-compose build
         """)		
         // powershell(script: 'docker build -t ivaylokenov/carrentalsystem-user-client-development --build-arg configuration=development ./Client')
