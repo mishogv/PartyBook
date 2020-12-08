@@ -24,11 +24,12 @@ pipeline {
     stage('Docker Build') {
       steps {
 		powershell(script: """ 
-		  dir
+		  cd src
 		  docker-compose build
         """)		
         // powershell(script: 'docker build -t ivaylokenov/carrentalsystem-user-client-development --build-arg configuration=development ./Client')
 		powershell(script: """ 
+		  cd src
 		  docker images -a
         """)
       }
