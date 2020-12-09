@@ -44,7 +44,11 @@ pipeline {
     }
     stage('Run Integration Tests') {
       steps { 
-	    powershell(script: 'dir') 
+	    powershell(script: """ 
+          cd src
+          cd Tests
+		  dir
+        """)
 		powershell(script: '.src/Tests/ContainerTests.ps1') 
       }
     }
