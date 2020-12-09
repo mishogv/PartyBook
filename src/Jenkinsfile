@@ -49,7 +49,7 @@ pipeline {
           cd Tests
 		  dir
         """)
-		powershell(script: '.src/Tests/ContainerTests.ps1') 
+		powershell(script: './ContainerTests.ps1') 
       }
     }
     stage('Stop Test Application') {
