@@ -21,12 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MicroServices", "MicroServi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.MicroServices.NightClub", "PartyBook.MicroServices.NightClub\PartyBook.MicroServices.NightClub.csproj", "{45BC9E71-FCD6-4204-874B-E25A33A65283}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.MicroServices.Review", "PartyBook.MicroServices.Review\PartyBook.MicroServices.Review.csproj", "{BB51B732-34DE-4621-826C-4683748F4776}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.MicroServices.Reservations", "PartyBook.MicroServices.Reservations\PartyBook.MicroServices.Reservations.csproj", "{5C5482A4-B41B-48CD-AAD8-82D262560A62}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.MicroServices.Statistics", "PartyBook.MicroServices.Statistics\PartyBook.MicroServices.Statistics.csproj", "{872BEB37-DABE-42D0-9D54-F7BF9625175A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.MicroServices.Administration", "PartyBook.MicroServices.Administration\PartyBook.MicroServices.Administration.csproj", "{9019F957-C172-453C-A431-194A14582F5C}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7C5F1435-9502-487C-9CB2-375A2E619CE2}"
@@ -35,9 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Configurations", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Watchdog", "PartyBook.Watchdog\PartyBook.Watchdog.csproj", "{BB5A7AE3-E75B-413C-9529-940C4DEC3536}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.MicroServices.Gateway", "PartyBook.Microservices.Gateway\PartyBook.MicroServices.Gateway.csproj", "{3E337FDA-606F-4A01-983E-33BAB82ED394}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyBook.Tests", "PartyBook.Tests\PartyBook.Tests.csproj", "{F90F2B5E-7809-4174-A88B-1B8D758B8245}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyBook.Tests", "PartyBook.Tests\PartyBook.Tests.csproj", "{F90F2B5E-7809-4174-A88B-1B8D758B8245}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,18 +65,6 @@ Global
 		{45BC9E71-FCD6-4204-874B-E25A33A65283}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45BC9E71-FCD6-4204-874B-E25A33A65283}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45BC9E71-FCD6-4204-874B-E25A33A65283}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB51B732-34DE-4621-826C-4683748F4776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB51B732-34DE-4621-826C-4683748F4776}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB51B732-34DE-4621-826C-4683748F4776}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB51B732-34DE-4621-826C-4683748F4776}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C5482A4-B41B-48CD-AAD8-82D262560A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C5482A4-B41B-48CD-AAD8-82D262560A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C5482A4-B41B-48CD-AAD8-82D262560A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C5482A4-B41B-48CD-AAD8-82D262560A62}.Release|Any CPU.Build.0 = Release|Any CPU
-		{872BEB37-DABE-42D0-9D54-F7BF9625175A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{872BEB37-DABE-42D0-9D54-F7BF9625175A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{872BEB37-DABE-42D0-9D54-F7BF9625175A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{872BEB37-DABE-42D0-9D54-F7BF9625175A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9019F957-C172-453C-A431-194A14582F5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9019F957-C172-453C-A431-194A14582F5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9019F957-C172-453C-A431-194A14582F5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -101,10 +81,6 @@ Global
 		{BB5A7AE3-E75B-413C-9529-940C4DEC3536}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB5A7AE3-E75B-413C-9529-940C4DEC3536}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB5A7AE3-E75B-413C-9529-940C4DEC3536}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3E337FDA-606F-4A01-983E-33BAB82ED394}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E337FDA-606F-4A01-983E-33BAB82ED394}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E337FDA-606F-4A01-983E-33BAB82ED394}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E337FDA-606F-4A01-983E-33BAB82ED394}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F90F2B5E-7809-4174-A88B-1B8D758B8245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F90F2B5E-7809-4174-A88B-1B8D758B8245}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F90F2B5E-7809-4174-A88B-1B8D758B8245}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -116,11 +92,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{83482139-C7EF-4F8F-98F2-93EDFD8C466C} = {200BABEE-4A31-4BFE-8EC3-53283A24000B}
 		{45BC9E71-FCD6-4204-874B-E25A33A65283} = {597E5163-FA70-42DA-8ADE-AE368AC5D149}
-		{BB51B732-34DE-4621-826C-4683748F4776} = {597E5163-FA70-42DA-8ADE-AE368AC5D149}
-		{5C5482A4-B41B-48CD-AAD8-82D262560A62} = {597E5163-FA70-42DA-8ADE-AE368AC5D149}
-		{872BEB37-DABE-42D0-9D54-F7BF9625175A} = {597E5163-FA70-42DA-8ADE-AE368AC5D149}
 		{9019F957-C172-453C-A431-194A14582F5C} = {597E5163-FA70-42DA-8ADE-AE368AC5D149}
-		{3E337FDA-606F-4A01-983E-33BAB82ED394} = {597E5163-FA70-42DA-8ADE-AE368AC5D149}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {95D8677D-B3BF-4F07-8C26-2ACC0CBC796C}
