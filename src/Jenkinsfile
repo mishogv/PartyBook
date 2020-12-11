@@ -78,6 +78,21 @@ pipeline {
             image.push("1.0.${env.BUILD_ID}")
             image.push('latest')
           }
+		  docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {
+            def image = docker.image("mishogv/partybookserver")
+            image.push("1.0.${env.BUILD_ID}")
+            image.push('latest')
+          }
+		  docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {
+            def image = docker.image("mishogv/partybookwatchdog")
+            image.push("1.0.${env.BUILD_ID}")
+            image.push('latest')
+          }
+		  docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {
+            def image = docker.image("mishogv/partybookmicroservicesadministration")
+            image.push("1.0.${env.BUILD_ID}")
+            image.push('latest')
+          }
         }
       }
     } 
