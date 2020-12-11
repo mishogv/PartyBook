@@ -65,6 +65,7 @@ pipeline {
 	      echo "Build successfull! You should deploy! :)"
 	    }
 	    failure {
+		  emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
 	      echo "Build failed! You should receive an e-mail! :("
 	    }
       }
