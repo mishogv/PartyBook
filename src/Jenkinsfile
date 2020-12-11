@@ -20,6 +20,12 @@ pipeline {
 		  cd ..
         """)
       }
+	  post {
+	    failure {
+		  emailext body: 'Tests failed', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+	      echo "Tests failed"
+	    }
+      }
     }
     stage('Docker Build') {
       steps {
@@ -95,6 +101,15 @@ pipeline {
             image.push('latest')
           }
         }
+      }
+	  post {
+	    success {
+	      echo "Build successfull! The Deploy is successfull! :)"
+	    }
+	    failure {
+		  emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+	      echo "Deploy failed! You should receive an e-mail! :("
+	    }
       }
     } 
     //stage('Deploy Development') {
